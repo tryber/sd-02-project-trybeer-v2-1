@@ -9,20 +9,20 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     validToken('http://localhost:3001/users/token')
       .then(() => {
-        setAuth(true)
+        setAuth(true);
         setIsTokenValidated(true);
       })
       .catch(() => {
         localStorage.removeItem('token');
         setIsTokenValidated(true);
-      })
+      });
   }, []);
 
   if (!isTokenValidated) return <div />;
   return (
     <Route
       {...rest}
-      render={(props) => auth ? <Component {...props} /> : <Redirect to="/" />}
+      render={(props) => (auth ? <Component {...props} /> : <Redirect to="/" />)}
     />
   );
 };

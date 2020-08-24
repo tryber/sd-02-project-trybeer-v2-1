@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { handleField } from "../../services/Validate";
+import handleField from "../../services/Validate";
 import "./style.css";
 
 const FormGroup = ({

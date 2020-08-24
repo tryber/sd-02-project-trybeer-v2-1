@@ -1,7 +1,7 @@
-import { getData, patchData } from "./Request";
+import { getData, patchData } from './Request';
 
 const getOrders = async () => {
-  const { data, error } = await getData(`http://localhost:3001/orders`);
+  const { data, error } = await getData('http://localhost:3001/orders');
 
   if (error) {
     return { error: error.message, data: [] };
@@ -28,8 +28,6 @@ const getOrder = async (id) => {
   return { data: data.order };
 };
 
-const updateOrder = async (id) => {
-  return await patchData(`http://localhost:3001/orders/${id}`);
-};
+const updateOrder = async (id) => patchData(`http://localhost:3001/orders/${id}`);
 
 export { getOrders, getOrder, updateOrder };

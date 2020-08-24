@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
-import Form from "react-bootstrap/Form";
+import React, { useState, useContext } from 'react';
+import Form from 'react-bootstrap/Form';
 
-import { Context } from "../../context";
-import { FormGroup, Message, SubmitButton } from "../../components";
-import { RegisterButton } from "./components";
-import { handleSubmit } from "./service";
+import { Context } from '../../context';
+import { FormGroup, Message, SubmitButton } from '../../components';
+import { RegisterButton } from './components';
+import handleSubmit from './service';
 
-import "./style.css";
+import './style.css';
 
 const Login = () => {
   const [email, setEmail] = useState({ value: null, error: null });
@@ -15,8 +15,7 @@ const Login = () => {
 
   const { message } = useContext(Context);
 
-  const isDisabled =
-    !email.value || !password.value || email.error || password.error;
+  const isDisabled = !email.value || !password.value || email.error || password.error;
 
   const body = { email: email.value, password: password.value };
 
@@ -26,7 +25,9 @@ const Login = () => {
         <h1>Trybeer</h1>
         <h2>Login</h2>
       </header>
-      {message.value && <Message infinity />}
+      {
+        message.value && <Message infinity />
+      }
       <Form>
         <FormGroup
           callback={setEmail}
