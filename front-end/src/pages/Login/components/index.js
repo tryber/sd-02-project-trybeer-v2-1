@@ -1,3 +1,3 @@
-import RegisterButton from "./RegisterButton";
+import RegisterButton from './RegisterButton';
 
-export { RegisterButton };
+export default RegisterButton;
