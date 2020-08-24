@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do projeto TryBeer v2!
+# Boas vindas ao repositório do projeto TryBeer v2!!!
 
 Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
 
@@ -197,7 +197,7 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
 1. Clone o repositório
 
-- `git clone git@github.com:tryber/trybeer-v2-project.git`.
+- `git clone git@github.com:tryber/sd-02-project-trybeer-v2-1.git`.
 - Entre na pasta do repositório que você acabou de clonar:
   - `cd trybeer-project`
 
@@ -240,13 +240,13 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
 7. Crie um novo `Pull Request` _(PR)_
 
-- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/trybeer-v2-project/pulls)
+- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-02-project-trybeer-v2-1/pulls)
 - Clique no botão verde _"New pull request"_
 - Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
 - Clique no botão verde _"Create pull request"_
 - Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
 - **Não se preocupe em preencher mais nada por enquanto!**
-- Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/trybeer-v2-project/pulls) e confira que o seu _Pull Request_ está criado
+- Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-02-project-trybeer-v2-1/pulls) e confira que o seu _Pull Request_ está criado
 
 ---
 
@@ -274,7 +274,7 @@ Para **"entregar"** seu projeto, siga os passos a seguir:
 - Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas
   - No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**
   - No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**
-  - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-01`
+  - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-02`
 
 Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
