@@ -1,0 +1,94 @@
+.role_field {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 1% 0.5%;
+  width: 60%;
+}
+
+.role_field > .form-check {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.form-check input {
+  cursor: pointer;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.form-check label {
+  background-color: #fdd692;
+  border: 5px double #ff9f1c;
+  border-radius: 5px;
+  color: #242423;
+  font-size: 100%;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 0.5%;
+}
+
+.form-check input:checked + label {
+  background-color: #ff9f1c;
+  color: #242423;
+  cursor: pointer;
+}
+
+/* .form_group_check {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  width: 60%;
+}
+
+.form_gro.form_group_check {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  width: 60%;
+}
+
+.form_group_check > .form-check {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.form-check input {
+  cursor: pointer;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.flex-font {
+  font-size: 40px;
+}
+
+.form-check label {
+  background-color: #606c38;
+  border: 5px double #283618;
+  border-radius: 5px;
+  color: #fff6ed;
+  font-size: 100%;
+  letter-spacing: 2px;
+  padding: 0.5%;
+}
+
+.form-check input:checked + label {
+  background-color: #283618;
+  color: #fff6ed;
+  cursor: pointer;
+} */

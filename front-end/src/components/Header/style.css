@@ -1,0 +1,92 @@
+.header_comp {
+  align-items: center;
+  background-color: #333533;
+  display: flex;
+  height: 10%;
+  width: 100%;
+}
+
+.header_comp > .menu {
+  align-items: center;
+  background-color: #333533;
+  border-color: #fdd692;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: flex;
+  flex-grow: 0;
+  margin: 2%;
+  padding: 0;
+}
+
+.header_comp > .menu > .material-icons {
+  color: #fdd692;
+  font-size: 1.4em;
+  height: 1em;
+  margin: 10% 0;
+  width: 1.4em;
+}
+
+.header_comp > .title {
+  align-items: center;
+  color: #fdd692;
+  display: flex;
+  flex-grow: 1;
+  font-family: Permanent Marker, cursive;
+  height: 100%;
+  justify-content: center;
+}
+
+.header_comp > .title > p {
+  color: #fdd692;
+  font-size: 2em;
+  height: 60%;
+  margin-bottom: 2%;
+}
+
+.lateral {
+  background-color: #333533;
+  display: flex;
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 9vh;
+  width: 30vw;
+  z-index: 2;
+}
+
+.lateral > .sidebar , .lateral > .sidebar > ul {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.lateral > .sidebar a {
+  color: #fdd692;
+  font-family: Permanent Marker, cursive;
+  font-size: 1em;
+  text-decoration: none;
+  width: 100%;
+}
+
+.lateral > .sidebar > ul {
+  list-style: none;
+}
+
+.lateral > .sidebar > ul > li {
+  align-items: center;
+  border: solid #fdd692 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  height: 7%;
+  justify-content: center;
+  margin: 5% 0;
+  width: 100%;
+}
+
+.lateral > .sidebar > ul > li:hover {
+  background-color: grey;
+}

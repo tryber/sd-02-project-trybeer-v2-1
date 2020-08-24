@@ -1,0 +1,24 @@
+.order_page {
+  height: 100%;
+  width: 100%;
+}
+
+.order_page > .margin {
+  padding: 5%;
+}
+
+.order_page .header {
+  display: flex;
+  font-size: 1.2em;
+  justify-content: space-between;
+}
+
+.order_page .total {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order_page .total > strong {
+  font-size: 1.4em;
+  margin-top: 1%;
+}
