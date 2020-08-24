@@ -1,10 +1,10 @@
-import { postData } from "../../services/Request";
+import { postData } from '../../services/Request';
 
-const URL = `http://localhost:3001/users/register`;
+const URL = 'http://localhost:3001/users/register';
 
 const userRoutes = {
-  admin: "admin/orders",
-  client: "/products",
+  admin: 'admin/orders',
+  client: '/products',
 };
 
 const handleConfirm = ({ value, password, callback }) => {
@@ -24,23 +24,25 @@ const handleConfirm = ({ value, password, callback }) => {
 const postUser = async (body) => {
   const { error, data } = await postData({ endpoint: URL, body });
 
-  if (data && data.token) localStorage.setItem("token", data.token);
+  if (data && data.token) localStorage.setItem('token', data.token);
 
   return { error };
 };
 
-async function handleSubmit({ event, body, history, setMessage }) {
+async function handleSubmit({
+  event, body, history, setMessage,
+}) {
   event.preventDefault();
 
   const { error } = await postUser(body);
 
   if (error) {
-    setMessage({ value: error.message || error.status, type: "ALERT" });
+    setMessage({ value: error.message || error.status, type: 'ALERT' });
 
     return;
   }
 
-  setMessage({ value: "User created with success", type: "SUCCESS" });
+  setMessage({ value: 'User created with success', type: 'SUCCESS' });
 
   history.push(userRoutes[body.role]);
 }
