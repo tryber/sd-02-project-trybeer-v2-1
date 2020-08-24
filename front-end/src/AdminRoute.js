@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { isAdmin } from './services/Request';
 
@@ -26,3 +27,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 };
 
 export default AdminRoute;
+
+AdminRoute.propTypes = {
+  component: PropTypes.node.isRequired,
+};

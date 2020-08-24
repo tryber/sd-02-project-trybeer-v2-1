@@ -29,8 +29,7 @@ const find = async (id) => connection()
       (acc, curr, index) => {
         if (index !== 0) return `${acc} OR id = :id_${curr}`;
         return `id = :id_${curr}`;
-      },
-      '');
+      }, '');
     query.where(string);
     id.forEach((curr) => query.bind(`id_${curr}`, curr));
     return query.execute();

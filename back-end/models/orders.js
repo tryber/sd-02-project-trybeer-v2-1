@@ -35,7 +35,9 @@ const details = async (id) => connection()
     quantity,
   })));
 
-const insert = async ({ userId, totalPrice, address, number, status = 'pendente' }) => connection()
+const insert = async ({
+  userId, totalPrice, address, number, status = 'pendente',
+}) => connection()
   .then((db) => db
     .getTable('orders')
     .insert(['user_id', 'order_date', 'total_price', 'address', 'number', 'status'])

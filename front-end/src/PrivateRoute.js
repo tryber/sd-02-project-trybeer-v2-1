@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { validToken } from './services/Request';
 
@@ -28,3 +29,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export default PrivateRoute;
+
+PrivateRoute.propTypes = {
+  component: PropTypes.node.isRequired,
+};
