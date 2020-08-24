@@ -1,9 +1,7 @@
 const { admin, orders, products } = require('../models');
 const { orderDetails } = require('./utils');
 
-
-const list = async () =>
-  admin.list();
+const list = async () => admin.list();
 
 const details = async (id) => {
   const findOrder = await orderDetails(id);

@@ -1,11 +1,10 @@
 const { orders, products } = require('../models');
 const { orderDetails } = require('./utils');
 
-const list = async (id) =>
-  orders.list({
-    key: 'user_id',
-    value: id,
-  });
+const list = async (id) => orders.list({
+  key: 'user_id',
+  value: id,
+});
 
 const details = async (id) => {
   const allProducts = await orders.details(id);
@@ -27,8 +26,7 @@ const details = async (id) => {
   };
 };
 
-const update = async (id) =>
-  orders.update(id);
+const update = async (id) => orders.update(id);
 
 const insert = async ({
   userId,

@@ -1,21 +1,20 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import Login from "./pages/Login";
-import Profile from "./pages/Client/Profile";
-import Products from "./pages/Client/Products";
-import Register from "./pages/Register";
-import Orders from "./pages/Client/Orders";
-import Order from "./pages/Client/Order";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Login from './pages/Login';
+import Profile from './pages/Client/Profile';
+import Products from './pages/Client/Products';
+import Register from './pages/Register';
+import Orders from './pages/Client/Orders';
+import Order from './pages/Client/Order';
 import AdminOrder from './pages/Admin/Order';
-import Checkout from "./pages/Client/Checkout";
-import PrivateRoute from "./PrivateRoute";
-import NotFound from "./NotFound";
-import Home from "./pages/Admin/Home";
+import Checkout from './pages/Client/Checkout';
+import PrivateRoute from './PrivateRoute';
+import NotFound from './NotFound';
+import Home from './pages/Admin/Home';
 import AdminProfile from './pages/Admin/Profile';
-import AdminRoute from "./AdminRoute";
+import AdminRoute from './AdminRoute';
 
-
-function App () {
+function App() {
   return (
     <div className="app">
       <Switch>

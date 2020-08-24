@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { createContext } from "react";
+import React, { useState, createContext } from 'react';
+import PropTypes from 'prop-types';
 
 const Context = createContext();
 
 const Provider = ({ children }) => {
-  const [message, setMessage] = useState({ value: "", type: "" });
+  const [message, setMessage] = useState({ value: '', type: '' });
 
   const context = {
     message,

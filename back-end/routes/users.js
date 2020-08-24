@@ -30,4 +30,3 @@ router
   .get(auth, rescue(users.isAdmin));
 
 module.exports = router;
-

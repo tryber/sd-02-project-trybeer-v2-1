@@ -15,7 +15,7 @@ const errorBoom = (err, res) => {
   return response.json({ error: { message, details: null } });
 };
 
-const error = (err, _req, res, _next) => {
+const error = (err, _req, res, _next = null) => {
   if (err.isBoom) {
     return errorBoom(err, res);
   }

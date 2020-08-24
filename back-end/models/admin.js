@@ -1,16 +1,13 @@
 const { connection } = require('./connection');
 
-const list = async () =>
-  connection()
-    .then((db) =>
-      db
+const list = async () => connection()
+    .then((db) => db
         .getTable('orders')
         .select()
         .execute(),
     )
     .then((results) => results.fetchAll())
-    .then((arrayOrders) =>
-      arrayOrders.map(([orderId, userId, orderDate, totalPrice, address, number, status]) => ({
+    .then((arrayOrders) => arrayOrders.map(([orderId, userId, orderDate, totalPrice, address, number, status]) => ({
         orderId,
         userId,
         orderDate,
@@ -20,7 +17,6 @@ const list = async () =>
         status,
       })),
     );
-
 
 module.exports = {
   list,

@@ -1,9 +1,9 @@
 const handleRole = ({ value, setRole }) => {
   if (value) {
-    setRole("admin");
+    setRole('admin');
   } else {
-    setRole("client");
+    setRole('client');
   }
 };
 
-export { handleRole };
+export default handleRole;

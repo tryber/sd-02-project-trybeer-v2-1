@@ -6,7 +6,9 @@ const {
 } = require('./utils');
 
 const find = async (body) => {
-  const { password, role, id, ...user } = await users.find({
+  const {
+    password, role, id, ...user,
+  } = await users.find({
     key: 'email',
     value: body.email,
   });

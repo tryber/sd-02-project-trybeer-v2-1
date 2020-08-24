@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { handleRole } from "./service";
+import handleRole from "./service";
 import "./style.css";
 
 const RoleField = ({ setRole }) => (
