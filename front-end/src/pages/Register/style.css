@@ -1,0 +1,56 @@
+.register_page {
+  align-items: center;
+  background-color: #fdd692;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  height: initial;
+  width: 100%;
+}
+
+.register_page > .title {
+  font-family: Permanent Marker, cursive;
+  font-size: 3em;
+  margin-top: 2%;
+}
+
+.register_page > form {
+  align-items: center;
+  background-color: #242423;
+  border-radius: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1% 0;
+  padding: 1%;
+  width: 80%;
+}
+
+.register_page > header {
+  align-items: center;
+  color: #333533;
+  display: flex;
+  flex-direction: column;
+  font-family: Permanent Marker, cursive;
+  margin: 1% 0;
+  width: 60%;
+}
+
+@media screen and ( max-width : 800px ) {
+
+  .register_page > form {
+    padding: 5% 1%;
+  }
+}
+
+@media screen and ( max-width : 500px ) {
+
+  .register_page {
+    font-size: 0.8em;
+  }
+
+  .register_page > form {
+    padding: 10% 1%;
+  }
+}

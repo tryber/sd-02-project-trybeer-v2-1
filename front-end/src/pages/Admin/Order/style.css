@@ -1,0 +1,48 @@
+.order_admin {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.order_admin > .container {
+  height: 100%;
+  padding: 3% 5%;
+  width: 100%;
+}
+
+.order_admin > .container > p {
+  font-size: 2em;
+}
+
+.order_admin > .container > .orders {
+  border: solid 1px black;
+  height: 70%;
+  overflow: auto;
+  padding: 3%;
+}
+
+.order_admin > .container > .orders > .total {
+  display: flex;
+  height: 10%;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.order_admin .total > strong {
+  font-size: 2em;
+}
+
+.order_admin > .container > .orders > .order {
+  display: flex;
+  font-size: 1.3em;
+  justify-content: space-between;
+}
+
+.order_admin > .container > button {
+  background-color: chartreuse;
+  border: none;
+  color: white;
+  font-size: 1.3em;
+  margin-top: 2%;
+  padding: 2%;
+}

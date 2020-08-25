@@ -1,0 +1,22 @@
+.profile_page {
+  align-items: center;
+  background-color: #fdd692;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.profile_page > form {
+  align-items: center;
+  background-color: #242423;
+  border-radius: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  justify-content: center;
+  margin: 10% 0;
+  padding: 1%;
+  width: 80%;
+}

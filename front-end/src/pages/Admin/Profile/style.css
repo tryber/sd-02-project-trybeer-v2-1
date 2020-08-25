@@ -1,0 +1,6 @@
+.admin_profile_info {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: space-around;
+}

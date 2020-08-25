@@ -1,0 +1,12 @@
+.order_product_comp {
+  padding: 2%;
+}
+
+.order_product_comp p {
+  margin: 0;
+}
+
+.order_product_comp .order {
+  border: solid 1px black;
+  margin-top: 3%;
+}
