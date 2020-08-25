@@ -11,7 +11,7 @@
   width: 85%;
 }
 
-.product_comp >.img {
+.product_comp > .img {
   height: 20vh;
   width: 80%;
 }
@@ -22,7 +22,7 @@
   width: 100%;
 }
 
-.product_comp >.price {
+.product_comp > .price {
   font-size: 1.2em;
   font-weight: 900;
   left: 7%;
@@ -31,13 +31,13 @@
   top: 2%;
 }
 
-.product_comp >.name {
+.product_comp > .name {
   font-size: 1.3em;
   margin: 0;
   margin-top: 5%;
 }
 
-.product_comp >.counter {
+.product_comp > .counter {
   align-items: center;
   display: flex;
   height: 3em;
@@ -45,19 +45,19 @@
   width: 100%;
 }
 
-.product_comp >.counter >button {
+.product_comp > .counter > button {
   background-color: #fdd692;
   border: none;
   height: 100%;
   margin: 0;
 }
 
-.product_comp >.counter >p {
+.product_comp > .counter > p {
   border: solid 1px black;
   margin: 3%;
   padding: 5% 7%;
 }
 
-.product_comp >.counter >button >.material-icons {
+.product_comp > .counter > button > .material-icons {
   font-size: 2em;
 }
