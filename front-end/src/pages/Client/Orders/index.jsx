@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom";
 
 import Message from '../../../components/Message';
 import Header from '../../../components/Header';
-import dateFormat from '../../../services/DateFormat';
+import { orderDateFormatter } from '../../../services/DateFormat';
 import { getOrders } from '../../../services/orders';
 import { Context } from '../../../context';
 
-import "./style.css";
+import './style.css';
 
 
 const details = (history, orderId) => {
@@ -41,7 +41,7 @@ const Orders = () => {
             <div className="order" key={orderId} onClick={() => details(history, orderId)}>
               <div className="header">
                 <strong className="pedido" data-testid={`${index}-order-number`}>Pedido {orderId}</strong>
-                <p className="date" data-testid={`${index}-order-date`}>{dateFormat(orderDate)}</p>
+                <p className="date" data-testid={`${index}-order-date`}>{orderDateFormatter(orderDate)}</p>
               </div>
               <strong data-testid={`${index}-order-total-value`}>R$ {totalPrice.toFixed(2)}</strong>
             </div>

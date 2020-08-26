@@ -2,12 +2,12 @@ import React, { useEffect, useState, useContext } from "react";
 
 import Message from '../../../components/Message';
 import Header from '../../../components/Header';
-import dateFormat from '../../../services/DateFormat';
+import { orderDateFormatter } from '../../../services/DateFormat';
 import { getOrder } from '../../../services/orders';
 import OrderProducts from '../../../components/OrderProducts';
 import { Context } from '../../../context';
 
-import "./style.css";
+import './style.css';
 
 
 const orderRender = (order, products) => {
@@ -15,7 +15,7 @@ const orderRender = (order, products) => {
     <div className="margin">
       <div className="header">
         <p>Pedido <span data-testid="order-number">{order.orderId}</span></p>
-        <p data-testid="order-date">{dateFormat(order.orderDate)}</p>
+        <p data-testid="order-date">{orderDateFormatter(order.orderDate)}</p>
       </div>
       <OrderProducts products={products} />
       <div className="total">

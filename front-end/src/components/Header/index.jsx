@@ -30,6 +30,14 @@ const LinkProfile = () => (
   </li>
 );
 
+const LinkChat = () => (
+  <li>
+    <Link to="/chats" data-testid="side-menu-item-chat-with-store">
+      Conversar com a loja
+    </Link>
+  </li>
+);
+
 const LinkOut = () => (
   <li>
     <Link onClick={()=> localStorage.clear()} to="/login" data-testid="side-menu-item-logout">
@@ -46,6 +54,7 @@ const sidebar = () => {
           {LinkProducts()}
           {LinkOrders()}
           {LinkProfile()}
+          {LinkChat()}
           {LinkOut()}
         </ul>
       </nav>

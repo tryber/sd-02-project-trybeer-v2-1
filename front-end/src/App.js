@@ -13,6 +13,10 @@ import NotFound from './NotFound';
 import Home from './pages/Admin/Home';
 import AdminProfile from './pages/Admin/Profile';
 import AdminRoute from './AdminRoute';
+import Chat from './pages/Client/Chat';
+import AdminChat from './pages/Admin/Chat';
+import AdminChats from './pages/Admin/Chats';
+import TransmitionLine from './pages/Admin/TransmitionLine';
 
 function App() {
   return (
@@ -28,7 +32,11 @@ function App() {
         <AdminRoute path="/admin/profile" component={AdminProfile} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route path="/" render={() => <Redirect to="/login" />} />
+        <Route exact path="/chats" component={Chat} />
+        <Route exact path="/admin/transmition" component={TransmitionLine} />
+        <Route exact path="/admin/chats/:email" component={AdminChat} />
+        <Route exact path="/admin/chats" component={AdminChats} />
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route component={NotFound} />
       </Switch>
     </div>

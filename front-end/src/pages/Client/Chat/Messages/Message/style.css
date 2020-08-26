@@ -1,0 +1,28 @@
+.message_comp-3r32 {
+  background-color: #e6e5ea;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 3% 2%;
+  padding: 1%;
+}
+
+.message_comp-3r32 p {
+  margin: 0;
+}
+
+.message_comp-3r32 > .user {
+  display: flex;
+  font-size: 0.7em;
+  margin: 0 1%;
+}
+
+.message_comp-3r32 > .user > p {
+  margin-right:3%;
+}
+
+.message_comp-3r32 > .message {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1%;
+}

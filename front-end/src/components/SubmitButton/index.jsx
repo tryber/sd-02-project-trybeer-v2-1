@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { Context } from "../../context";
-import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+
+import { Context } from "../../context";
+
 import "./style.css";
 
 const SubmitButton = ({ body, isDisabled, handleSubmit, label, testId }) => {
   const { setMessage } = useContext(Context);
-
   const history = useHistory();
 
   return (
