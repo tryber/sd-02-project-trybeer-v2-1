@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import MessagesContainer from '../../../components/MessagesContainer';
 import Menu from '../Menu';
 import Messages from './Messages';
 import SendField from '../../../components/SendField';
@@ -12,8 +13,6 @@ const handleSubmit = (setMessages) => (input) => {
     // socket.emit('send-message', { message, yourUser });
   }
 };
-
-
 
 const Chat = (props) => {
   const { email } = props.match.params;
@@ -31,7 +30,7 @@ const Chat = (props) => {
     <div className="chat_admin_page">
       <Menu />
       <div className="chat_admin_container">
-        <Messages messages={messages} user={user} />
+        <MessagesContainer messages={messages} user={user} />
         <SendField handleSubmit={handleSubmit(setMessages)} sentby="admin" />
       </div>
     </div>

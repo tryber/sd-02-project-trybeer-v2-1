@@ -20,9 +20,9 @@
 
 .chat_admin_page > .chat_admin_container > .send_field > button {
   background: #333533;
-  cursor: pointer;
   border: none;
   border-radius: 2px;
   color: white;
+  cursor: pointer;
   font-size: 1.2em;
 }

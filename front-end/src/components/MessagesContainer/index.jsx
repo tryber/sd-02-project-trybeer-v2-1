@@ -3,9 +3,9 @@ import Message from './Message';
 import './style.css';
 
 
-const Messages = ({ messages, user }) => {
+const MessagesContainer = ({ messages, user }) => {
   return (
-    <div className="messages_comp">
+    <div className="messages_comp-23d2">
       {messages.map((message, index) => (
         <Message key={`message-${index}`} message={message} user={user} />
       ))}
@@ -13,4 +13,4 @@ const Messages = ({ messages, user }) => {
   );
 };
 
-export default Messages;
+export default MessagesContainer;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Header from '../../../components/Header';
-import Messages from './Messages';
+import MessagesContainer from '../../../components/MessagesContainer';
 import SendField from '../../../components/SendField';
 
 import './style.css';
@@ -24,7 +24,7 @@ const Chat = () => {
   return (
     <div className="chat_comp">
       <Header title="Chat da loja" />
-      <Messages messages={messages} user={user} />
+      <MessagesContainer messages={messages} user={user} />
       <SendField handleSubmit={handleSubmit(setMessages)} sentby="client" />
     </div>
   );
