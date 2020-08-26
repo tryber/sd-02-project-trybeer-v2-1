@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import io from 'socket.io-client';
 
 import MessagesContainer from '../../../components/MessagesContainer';
 import Menu from '../Menu';
-import Messages from './Messages';
 import SendField from '../../../components/SendField';
 
-import "./style.css";
+import './style.css';
 
-const handleSubmit = (setMessages) => (input) => {
+
+const handleSubmit = (setMessages, socket) => (input) => {
   if (input) {
-    setMessages((curr) => [...curr, { message: input, date: new Date(), sentby: 'admin' }]);
-    // socket.emit('send-message', { message, yourUser });
+    const newMessage = { message: input, date: new Date(), sentby: 'admin' };
+    setMessages((curr) => [...curr, newMessage]);
+    socket.emit('send-message', newMessage);
   }
 };
 
@@ -21,17 +23,22 @@ const Chat = (props) => {
     { message: 'Olá também', date: new Date(), sentby: 'client' },
     { message: 'Olá', date: new Date(), sentby: 'admin' },
   ]);
+  const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT);
 
-  // email1@gmail.com: {
-  //   messages: [{ message, date, sentby: 'admin' || 'clinet' }],
-  // }
+  useEffect(() => {
+    socket.on('receive-message', (message) => {
+      setMessages((curr) => [...curr, message]);
+    });
+
+    return () => { socket.destroy(); }
+  }, [socket]);
 
   return (
     <div className="chat_admin_page">
       <Menu />
       <div className="chat_admin_container">
         <MessagesContainer messages={messages} user={user} />
-        <SendField handleSubmit={handleSubmit(setMessages)} sentby="admin" />
+        <SendField handleSubmit={handleSubmit(setMessages, socket)} sentby="admin" />
       </div>
     </div>
   );

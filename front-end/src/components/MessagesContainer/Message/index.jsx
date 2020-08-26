@@ -1,5 +1,5 @@
 import React from "react";
-import { chatDateFormatter } from '../../../../../services/DateFormat';
+import { chatDateFormatter } from '../../../services/DateFormat';
 import "./style.css";
 
 const Message = ({ message: { message, date, sentby }, user }) => {
