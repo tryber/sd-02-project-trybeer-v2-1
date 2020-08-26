@@ -13,4 +13,4 @@ const chatDateFormatter = (date) => {
 module.exports = {
   chatDateFormatter,
   orderDateFormatter,
-}
+};

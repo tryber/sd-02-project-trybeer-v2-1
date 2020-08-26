@@ -17,7 +17,7 @@
   padding: 3%;
 }
 
-.chats_admin> .container > .chats_container {
+.chats_admin > .container > .chats_container {
   display: flex;
   flex-direction: column;
   padding: 3%;
