@@ -1,7 +1,10 @@
 import React from "react";
+
 import { useHistory } from "react-router-dom";
 import { chatDateFormatter } from '../../../../services/DateFormat';
+
 import "./style.css";
+
 
 const handleClick = (history, email) => {
   history.push(`chats/${email}`);
