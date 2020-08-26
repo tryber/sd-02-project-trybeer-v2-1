@@ -1,0 +1,15 @@
+.send_field {
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: 10%;
+}
+
+.send_field > button {
+  background: #333533;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2em;
+}

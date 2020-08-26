@@ -1,0 +1,12 @@
+.email_comp {
+  align-items: center;
+  border: solid black 1px;
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 2%;
+  padding: 1%;
+}
+
+.email_comp > p {
+  margin: 0;
+}

@@ -29,5 +29,5 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 export default AdminRoute;
 
 AdminRoute.propTypes = {
-  component: PropTypes.node.isRequired,
+  component: PropTypes.elementType.isRequired,
 };

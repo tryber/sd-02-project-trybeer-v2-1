@@ -1,0 +1,23 @@
+.trans_admin_page {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.trans_admin_page > .container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+.trans_admin_page .container-email {
+  height: 100%;
+  width: 100%;
+}
+
+.trans_admin_page > .container > p {
+  font-size: 3em;
+  margin: 1% 2%;
+}

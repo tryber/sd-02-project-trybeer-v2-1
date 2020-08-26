@@ -1,0 +1,37 @@
+.chats_admin {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.chats_admin > .container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.chats_admin > .container > .header {
+  display: flex;
+  justify-content: space-between;
+  padding: 3%;
+}
+
+.chats_admin > .container > .chats_container {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+}
+
+.chats_admin > .container > .header > p {
+  font-size: 3em;
+  margin: 0;
+}
+
+.chats_admin > .container > .header > button {
+  background-color: chartreuse;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  padding: 0 2%;
+}
