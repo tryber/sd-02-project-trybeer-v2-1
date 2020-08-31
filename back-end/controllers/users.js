@@ -51,10 +51,7 @@ const update = async (req, res) => {
 
 const validToken = (_req, res) => res.status(200).json();
 
-const isAdmin = (req, res) => {
-  const { role } = req.user;
-  res.status(200).json({ role });
-};
+const getUser = (req, res) => res.status(200).json({ ...req.user, password: null });
 
 module.exports = {
   find,
@@ -62,5 +59,5 @@ module.exports = {
   register,
   update,
   validToken,
-  isAdmin,
+  getUser,
 };
