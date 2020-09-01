@@ -6,15 +6,17 @@ import Chat from './Chat';
 import "./style.css";
 import { getData } from "../../../services/Request";
 
+const dateSort = (param) => new Date(param.messages[param.messages.length - 1].date)
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
   useEffect(() => {
     getData('http://localhost:3001/messages')
       .then(({ data }) => {
-        if (data) setChats(data.messages)
+        if (data) setChats(data.messages.sort((a, b) => dateSort(b) - dateSort(a)))
       })
   }, []);
+  if (!chats.length) return <h3> Carregando ...</h3>;
 
   return (
     <div className="chats_admin">
@@ -24,9 +26,11 @@ const Chats = () => {
           <p>Conversas</p>
         </div>
         <div className="chats_container">
-          {chats.map(({ _id: id, ...chat }) => (
+          {chats.length > 0 ? chats.map(({ _id: id, ...chat }) => (
             <Chat key={id} chat={chat} />
-          ))}
+          )) :
+            <h2 data-testid="text-for-no-conversation">Nenhuma conversa por aqui</h2>
+          }
         </div>
       </div>
     </div>

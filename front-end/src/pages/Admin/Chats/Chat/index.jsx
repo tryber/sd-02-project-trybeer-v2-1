@@ -14,8 +14,10 @@ const Chat = ({ chat }) => {
     }}
       className="chat-8h7"
     >
-      <strong>{chat.email}</strong>
-      <p>Ultima mensagem às {chatDateFormatter(chat.messages[chat.messages.length - 1].date)}</p>
+      <strong data-testid="profile-name">{chat.email}</strong>
+      <p data-testid="last-message">
+        Ultima mensagem às {chatDateFormatter(chat.messages[chat.messages.length - 1].date)}
+      </p>
     </Link>
   );
 };

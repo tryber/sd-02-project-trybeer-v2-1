@@ -23,9 +23,16 @@ const SendField = ({ handleSubmit: cb }) => {
         ref={inputRef}
         placeholder="Envie sua mensagem..."
         required
+        data-testid="chat-message"
         onChange={(e) => onChangeHandleMessage(e, setInput)}
       />
-      <button type="button" onClick={() => handleSubmit(input, inputRef, cb)}>Enviar</button>
+      <button
+        data-testid="send-message-btn"
+        type="button"
+        onClick={() => handleSubmit(input, inputRef, cb)}
+      >
+        Enviar
+      </button>
     </div>
   );
 };

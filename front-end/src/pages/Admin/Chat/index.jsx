@@ -7,6 +7,7 @@ import io from 'socket.io-client';
 
 import './style.css';
 import Menu from "../Menu";
+import { Link } from "react-router-dom";
 
 
 const handleSubmit = ({ role }, email) => async (input) => {
@@ -44,6 +45,11 @@ const Chat = ({ location: { state: { email } } }) => {
   return (
     <div className="chat_comp chat_adm">
       <Menu title={email} />
+      <Link to="/admin/chats" >
+        <span class="material-icons">
+          keyboard_backspace
+        </span>
+      </Link>
       <div className="content_chat">
         <MessagesContainer messages={messages} email={email} user={user} />
         <SendField handleSubmit={handleSubmit(user, email)} sentby="admin" />
