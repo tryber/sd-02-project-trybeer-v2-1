@@ -3,12 +3,11 @@ import Message from './Message';
 import './style.css';
 
 
-const MessagesContainer = ({ messages, user }) => {
-
+const MessagesContainer = ({ email, messages, user }) => {
   return (
     <div className="messages_comp-23d2">
       {messages.map((message, index) => (
-        <Message key={`message-${index}`} message={message} user={user} />
+        <Message key={`message-${index}`} message={message} email={email} user={user} />
       ))}
     </div>
   );

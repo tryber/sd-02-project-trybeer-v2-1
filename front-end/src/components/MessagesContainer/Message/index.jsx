@@ -2,8 +2,19 @@ import React from "react";
 import { chatDateFormatter } from '../../../services/DateFormat';
 import "./style.css";
 
-const Message = ({ message: { message, date, sentby }, user }) => {
-  const yourMessage = (sentby === 'client');
+const switchClient = (user, yourMessage, email) => {
+  switch (user.role) {
+    case 'admin': {
+      return (yourMessage) ? 'Loja' : email
+    }
+    case 'client': {
+      return (!yourMessage) ? 'Loja' : user.email
+    }
+  }
+}
+
+const Message = ({ message: { message, date, sentby }, user, email }) => {
+  const yourMessage = (sentby === user.role);
   return (
     <div
       className="message_comp-g5h"
@@ -13,7 +24,7 @@ const Message = ({ message: { message, date, sentby }, user }) => {
       }}
     >
       <div className="user">
-        <p data-testid="nickname">{(!yourMessage) ? 'Loja' : user.email}</p> 
+        <p data-testid="nickname">{switchClient(user, yourMessage, email)}</p>
         <p data-testid="message-time">{chatDateFormatter(date)}</p>
       </div>
       <div className="message">

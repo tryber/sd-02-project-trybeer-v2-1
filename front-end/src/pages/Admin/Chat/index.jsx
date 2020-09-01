@@ -11,9 +11,8 @@ import Menu from "../Menu";
 
 const handleSubmit = ({ role }, email) => async (input) => {
   if (input) {
-    const socket = io('http://localhost:4555/');
-    await socket.emit('send-message', { message: input, yourUser: { role, email } });
-    socket.disconnect();
+    const normalSocket = io('http://localhost:4555/');
+    await normalSocket.emit('send-message', { message: input, yourUser: { role, email } });
   }
 };
 
@@ -43,10 +42,10 @@ const Chat = ({ location: { state: { email } } }) => {
   });
 
   return (
-    <div className="chat_comp">
+    <div className="chat_comp chat_adm">
       <Menu title={email} />
       <div className="content_chat">
-        <MessagesContainer messages={messages} user={user} />
+        <MessagesContainer messages={messages} email={email} user={user} />
         <SendField handleSubmit={handleSubmit(user, email)} sentby="admin" />
       </div>
     </div>
