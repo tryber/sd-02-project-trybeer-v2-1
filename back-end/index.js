@@ -12,7 +12,7 @@ const { error } = require('./middlewares');
 
 const socketConnection = require('./server');
 const {
-  products, users, orders, admin,
+  products, users, orders, admin, messages,
 } = require('./routes');
 
 const app = express();
@@ -34,6 +34,8 @@ app.use('/admin', admin);
 app.use('/products', products);
 
 app.use('/users', users);
+
+app.use('/messages', messages);
 
 app.use(error);
 

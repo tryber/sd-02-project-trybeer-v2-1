@@ -4,6 +4,7 @@ import './style.css';
 
 
 const MessagesContainer = ({ messages, user }) => {
+
   return (
     <div className="messages_comp-23d2">
       {messages.map((message, index) => (

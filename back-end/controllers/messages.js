@@ -1,7 +1,9 @@
-const { message } = require("../services/utils/joinSchemas/ordersSchema");
-
-const { getMessagesForEmail } = require('../models/messages');
+const { getMessagesForEmail, postNewMessage, getAllMessages } = require('../models/messages');
 
 const getMessages = async (email) => getMessagesForEmail(email);
 
-module.exports = { getMessages };
+const saveMessage = async ({ message, yourUser }) => postNewMessage(message, yourUser);
+
+const getAll = async (req, res) => res.status(200).json({ messages: await getAllMessages() });
+
+module.exports = { getMessages, saveMessage, getAll };
