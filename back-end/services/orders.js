@@ -26,7 +26,7 @@ const details = async (id) => {
   };
 };
 
-const update = async (id) => orders.update(id);
+const update = async (id, status) => orders.update(id, status);
 
 const insert = async ({
   userId,

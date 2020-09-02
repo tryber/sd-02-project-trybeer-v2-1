@@ -54,11 +54,11 @@ const insertOrdersProducts = async ({ orderId, products }) => connection()
     return query.execute();
   });
 
-const update = async (id) => connection()
+const update = async (id, status) => connection()
   .then((db) => db
     .getTable('orders')
     .update()
-    .set('status', 'entregue')
+    .set('status', status)
     .where('id = :id')
     .bind('id', id)
     .execute());
