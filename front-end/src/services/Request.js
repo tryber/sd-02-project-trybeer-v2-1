@@ -33,10 +33,10 @@ const postSale = async (endpoint, body) => axios
   .post(endpoint, { ...body }, { headers: headers() })
   .catch((error) => handleError({ error }));
 
-const isAdmin = async (endpoint) => axios.get(endpoint, {
+const getUser = async (endpoint) => axios.get(endpoint, {
   headers: headers(),
 });
 
 export {
-  getData, patchData, postData, validToken, isAdmin, postSale,
+  getData, patchData, postData, validToken, getUser, postSale,
 };

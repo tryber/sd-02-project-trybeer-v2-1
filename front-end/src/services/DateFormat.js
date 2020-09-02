@@ -6,8 +6,8 @@ const orderDateFormatter = (date) => {
 };
 
 const chatDateFormatter = (date) => {
-  const d = new Date(date);
-  return `${digits(d.getUTCHours() + 1)}:${digits(d.getUTCMinutes())}`;
+  const d = new Date(date).toLocaleString();
+  return d.split(' ')[1];
 };
 
 module.exports = {
