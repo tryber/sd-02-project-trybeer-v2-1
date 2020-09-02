@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false,
       },
       total_price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DOUBLE,
         allowNull: false,
         defaultValue: 0,
       },
