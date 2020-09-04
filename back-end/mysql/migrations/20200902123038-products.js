@@ -7,12 +7,12 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       price: {
         type: Sequelize.DOUBLE,
+        allowNull: false,
+      },
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       volume: {
