@@ -1,22 +1,24 @@
 import React from "react";
-
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { chatDateFormatter } from '../../../../services/DateFormat';
 
 import "./style.css";
 
-
-const handleClick = (history, email) => {
-  history.push(`chats/${email}`);
-};
-
 const Chat = ({ chat }) => {
-  const history = useHistory();
   return (
-    <div className="chat-8h7" onClick={() => handleClick(history, chat.email)}>
-      <strong>{chat.email}</strong>
-      <p>Ultima mensagem às {chatDateFormatter(chat.date)}</p>
-    </div>
+    <Link to={{
+      pathname: `chats/${chat.email}`,
+      state: {
+        email: chat.email
+      }
+    }}
+      className="chat-8h7"
+    >
+      <strong data-testid="profile-name">{chat.email}</strong>
+      <p data-testid="last-message">
+        Ultima mensagem às {chatDateFormatter(chat.messages[chat.messages.length - 1].date)}
+      </p>
+    </Link>
   );
 };
 

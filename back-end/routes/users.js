@@ -26,7 +26,7 @@ router
   .get(auth, rescue(users.validToken));
 
 router
-  .route('/admin')
-  .get(auth, rescue(users.isAdmin));
+  .route('/getUser')
+  .get(auth, rescue(users.getUser));
 
 module.exports = router;
