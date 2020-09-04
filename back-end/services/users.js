@@ -42,7 +42,7 @@ const login = async (body) => {
 const register = async (body) => {
   const user = await users.find({ key: "email", value: body.email });
 
-  if (user) {
+  if (user.length !== 0) {
     return { error: "existUser" };
   }
 
