@@ -17,13 +17,13 @@ const handleSubmit = (setMessages, socket) => (input) => {
 };
 
 const Chat = (props) => {
+  const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT);
   const { email } = props.match.params;
   const [user, setUser] = useState({ id: 'id', email: 'voce@gmail.com' });
   const [messages, setMessages] = useState([
     { message: 'Olá também', date: new Date(), sentby: 'client' },
     { message: 'Olá', date: new Date(), sentby: 'admin' },
   ]);
-  const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT);
 
   useEffect(() => {
     socket.on('receive-message', (message) => {
@@ -31,7 +31,7 @@ const Chat = (props) => {
     });
 
     return () => { socket.destroy(); }
-  }, [socket]);
+  }, []);
 
   return (
     <div className="chat_admin_page">

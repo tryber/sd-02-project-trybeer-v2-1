@@ -7,6 +7,7 @@ import SendField from '../../../components/SendField';
 
 import "./style.css";
 
+
 const handleSubmit = (socket) => (input) => {
   if (input) {
     const newMessage = { message: input, date: new Date(), sentby: 'admin' };
@@ -15,12 +16,12 @@ const handleSubmit = (socket) => (input) => {
 };
 
 const TransmitionLine = () => {
-  const [emails, setEmails] = useState(['ahy@gamil.com', 'uuhy@gamil.com']);
   const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT);
+  const [emails, setEmails] = useState(['ahy@gamil.com', 'uuhy@gamil.com']);
 
   useEffect(() => {
     return () => { socket.destroy(); }
-  }, [socket]);
+  }, []);
 
   return (
     <div className="trans_admin_page">
