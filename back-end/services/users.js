@@ -6,12 +6,16 @@ const {
 } = require("./utils");
 
 const find = async (body) => {
-  const { password, role, id, ...user } = await users.find({
+  const user = await users.find({
     key: "email",
     value: body.email,
   });
 
-  return user;
+  const {
+    dataValues: { password, ...userWithoutPassword },
+  } = user[0];
+
+  return userWithoutPassword;
 };
 
 const login = async (body) => {
