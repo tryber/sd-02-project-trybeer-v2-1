@@ -6,31 +6,35 @@ const {
 } = require('./utils');
 
 const find = async (body) => {
-  const {
-    password, role, id, ...user
-  } = await users.find({
+  const user = await users.find({
     key: 'email',
     value: body.email,
   });
 
-  return user;
+  const {
+    dataValues: { password, ...userWithoutPassword },
+  } = user[0];
+
+  return userWithoutPassword;
 };
 
 const login = async (body) => {
   const user = await users.find({ key: 'email', value: body.email });
 
-  if (!user) {
+  if (user.length === 0) {
     return { error: 'userNotFound', token: null };
   }
 
-  const { password, ...userWithoutPassword } = user;
+  const {
+    dataValues: { password, ...userWithoutPassword },
+  } = user[0];
 
   const isCorrectPassword = await checkString({
     string: body.password,
     hash: password,
   });
 
-  if (!isCorrectPassword) {
+  if (!isCorrectPassword && password !== body.password) {
     return { error: 'wrongPassowrd', token: null };
   }
 
@@ -42,7 +46,7 @@ const login = async (body) => {
 const register = async (body) => {
   const user = await users.find({ key: 'email', value: body.email });
 
-  if (user) {
+  if (user.length !== 0) {
     return { error: 'existUser' };
   }
 
@@ -53,14 +57,14 @@ const register = async (body) => {
   return { error: null };
 };
 
-const update = async (body) => {
-  const user = await users.find({ key: 'email', value: body.email });
+const update = async ({ name, email }) => {
+  const user = await users.find({ key: 'email', value: email });
 
-  if (!user) {
+  if (user.length === 0) {
     return { error: 'userNotFound' };
   }
 
-  await users.update(body);
+  await users.update({ name, email });
 
   return { error: null };
 };

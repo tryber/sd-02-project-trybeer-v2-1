@@ -1,4 +1,2 @@
-*.test.js
-serviceWorker.js
 back-end/mysql/migrations/*.js
 back-end/mysql/models/index.js

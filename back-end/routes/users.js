@@ -5,8 +5,10 @@ const rescue = require('express-rescue');
 const { users } = require('../controllers');
 
 const {
-  userSchema: { loginSchema, profileSchema, registerSchema },
-} = require('../services/utils/joinSchemas');
+  joinSchemas: {
+    userSchema: { loginSchema, profileSchema, registerSchema },
+  },
+} = require('../services/utils');
 
 const { validate, auth } = require('../middlewares');
 
@@ -21,12 +23,8 @@ router
 
 router.post('/register', validate(registerSchema), rescue(users.register));
 
-router
-  .route('/token')
-  .get(auth, rescue(users.validToken));
+router.route('/token').get(auth, rescue(users.validToken));
 
-router
-  .route('/getUser')
-  .get(auth, rescue(users.getUser));
+router.route('/getUser').get(auth, rescue(users.getUser));
 
 module.exports = router;

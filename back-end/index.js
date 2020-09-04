@@ -11,8 +11,13 @@ const path = require('path');
 const { error } = require('./middlewares');
 
 const socketConnection = require('./server');
+
 const {
-  products, users, orders, admin, messages,
+  products,
+  users,
+  orders,
+  admin,
+  messages,
 } = require('./routes');
 
 const app = express();
