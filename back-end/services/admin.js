@@ -1,7 +1,7 @@
-const { admin, orders, products } = require('../models');
-const { orderDetails } = require('./utils');
+const { admin, orders, products } = require("../models");
+const { orderDetails } = require("./utils");
 
-const list = async () => admin.list();
+const list = async () => orders.list();
 
 const details = async (id) => {
   const findOrder = await orderDetails(id);
@@ -11,12 +11,11 @@ const details = async (id) => {
 
   const productsDetails = await products.find(productsId);
 
-  const productsWithQuantity = productsDetails
-    .map((product) => ({
-      ...product,
-      quantity: allProducts
-        .find(({ productId }) => productId === product.id).quantity,
-    }));
+  const productsWithQuantity = productsDetails.map((product) => ({
+    ...product,
+    quantity: allProducts.find(({ productId }) => productId === product.id)
+      .quantity,
+  }));
 
   return {
     ...findOrder[0],

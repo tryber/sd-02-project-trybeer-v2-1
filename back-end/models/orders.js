@@ -5,8 +5,13 @@ const {
   orders_products: OrdersProducts,
 } = require("../mysql/models");
 
-const list = async ({ key, value }) =>
-  orders.findAll({ where: { [key]: value } });
+const list = async (ind) => {
+  if (ind) return orders.findAll({ where: { [ind.key]: ind.value } });
+  return orders.findAll({
+    include: [{ model: users }],
+    attributes: { exclude: ["user_id"] },
+  });
+};
 
 const details = async (id) =>
   orders.findByPk(id, {

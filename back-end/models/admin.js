@@ -1,5 +1,3 @@
-// const { connection } = require('./connection');
-
 // const list = async () => connection()
 //   .then((db) => db
 //     .getTable('orders')
