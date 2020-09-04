@@ -1,27 +1,13 @@
-// const find = async ({ key, value }) => {
-//   const user = await connection()
-//     .then((db) =>
-//       db
-//         .getTable("users")
-//         .select(["id", "name", "email", "password", "role"])
-//         .where(`${key} = :${key}`)
-//         .bind(key, value)
-//         .execute()
-//     )
-//     .then((results) => results.fetchAll())
-//     .then((data) => data[0]);
-//   if (!user) return null;
+const { users } = require("../mysql/models");
 
-//   const [id, name, email, password, role] = user;
+const find = async ({ key, value }) => {
+  console.log(key, value);
+  if (key === "id") {
+    return users.findByPk(value);
+  }
 
-//   return {
-//     id,
-//     name,
-//     email,
-//     password,
-//     role,
-//   };
-// };
+  return users.findAll({ where: { [key]: value } });
+};
 
 // const register = async ({ name, email, password, role }) =>
 //   connection().then((db) =>
@@ -43,8 +29,8 @@
 //       .execute()
 //   );
 
-// module.exports = {
-//   find,
-//   register,
-//   update,
-// };
+module.exports = {
+  find,
+  // register,
+  // update,
+};
