@@ -1,16 +1,16 @@
-const Boom = require('@hapi/boom');
+const Boom = require("@hapi/boom");
 
-const { users } = require('../services');
+const { users } = require("../services");
 
 const handleError = {
   existUser: () => {
-    throw Boom.badRequest('Email already registered');
+    throw Boom.badRequest("Email already registered");
   },
   userNotFound: () => {
-    throw Boom.badRequest('User not exists');
+    throw Boom.badRequest("User not exists");
   },
   wrongPassowrd: () => {
-    throw Boom.badRequest('Wrong Password');
+    throw Boom.badRequest("Wrong Password");
   },
 };
 
@@ -36,7 +36,7 @@ const register = async (req, res) => {
   if (error) {
     handleError[error]();
   }
-  res.status(201).json({ token, message: 'User created with success!' });
+  res.status(201).json({ token, message: "User created with success!" });
 };
 
 const update = async (req, res) => {
@@ -46,12 +46,12 @@ const update = async (req, res) => {
     handleError[error]();
   }
 
-  res.status(200).json({ message: 'User update with sucess!' });
+  res.status(200).json({ message: "User update with sucess!" });
 };
 
 const validToken = (_req, res) => res.status(200).json();
 
-const getUser = (req, res) => res.status(200).json({ ...req.user, password: null });
+const getUser = (req, res) => res.status(200).json({ ...req.user });
 
 module.exports = {
   find,
