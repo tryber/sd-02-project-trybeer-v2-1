@@ -10,19 +10,11 @@ const find = async ({ key, value }) => {
 
 const register = async (data) => users.create(data);
 
-// const update = async ({ name, email }) =>
-//   connection().then((db) =>
-//     db
-//       .getTable("users")
-//       .update()
-//       .set("name", name)
-//       .where("email = :email")
-//       .bind("email", email)
-//       .execute()
-//   );
+const update = async ({ name, email }) =>
+  users.update({ name }, { where: { email } });
 
 module.exports = {
   find,
   register,
-  // update,
+  update,
 };

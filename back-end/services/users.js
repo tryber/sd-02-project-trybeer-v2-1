@@ -53,14 +53,14 @@ const register = async (body) => {
   return { error: null };
 };
 
-const update = async (body) => {
-  const user = await users.find({ key: "email", value: body.email });
+const update = async ({ name, email }) => {
+  const user = await users.find({ key: "email", value: email });
 
-  if (!user) {
+  if (user.length === 0) {
     return { error: "userNotFound" };
   }
 
-  await users.update(body);
+  await users.update({ name, email });
 
   return { error: null };
 };
