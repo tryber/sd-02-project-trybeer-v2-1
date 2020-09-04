@@ -10,6 +10,4 @@ const router = express.Router();
 
 router.get('/orders', auth, rescue(admin.list));
 
-router.get('/orders/:id', auth, rescue(admin.details));
-
 module.exports = router;

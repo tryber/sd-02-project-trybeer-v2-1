@@ -27,6 +27,14 @@ const LinkOrders = () => (
   </li>
 );
 
+const LinkChats = () => (
+  <li>
+    <Link to="/admin/chats" data-testid="side-menu-item-chat">
+      Conversas
+    </Link>
+  </li>
+);
+
 const Menu = () => {
   return (
     <div className="menu_admin">
@@ -37,6 +45,7 @@ const Menu = () => {
         <ul>
           {LinkOrders()}
           {LinkProfile()}
+          {LinkChats()}
           {LinkOut()}
         </ul>
       </nav>

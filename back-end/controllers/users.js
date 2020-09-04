@@ -32,15 +32,20 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   const { error } = await users.register(req.body);
+
   const { token } = await users.login(req.body);
+
   if (error) {
     handleError[error]();
   }
+
   res.status(201).json({ token, message: 'User created with success!' });
 };
 
 const update = async (req, res) => {
-  const { error } = await users.update(req.body);
+  const { error } = await users.update({
+    ...req.body,
+  });
 
   if (error) {
     handleError[error]();
@@ -51,10 +56,7 @@ const update = async (req, res) => {
 
 const validToken = (_req, res) => res.status(200).json();
 
-const isAdmin = (req, res) => {
-  const { role } = req.user;
-  res.status(200).json({ role });
-};
+const getUser = (req, res) => res.status(200).json({ ...req.user });
 
 module.exports = {
   find,
@@ -62,5 +64,5 @@ module.exports = {
   register,
   update,
   validToken,
-  isAdmin,
+  getUser,
 };

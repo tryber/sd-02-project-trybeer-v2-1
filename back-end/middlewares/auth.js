@@ -15,11 +15,17 @@ const auth = async (req, _res, next) => {
     const decoded = verifyToken(token);
 
     const user = await users.find({ key: 'email', value: decoded.data.email });
+
     if (!user) {
       throw Boom.unauthorized('Error by looking a user with this token');
     }
 
-    req.user = user;
+    const {
+      dataValues: { password, ...userWithoutPassword },
+    } = user[0];
+
+    req.user = userWithoutPassword;
+
     next();
   } catch (err) {
     next(err);

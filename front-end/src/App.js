@@ -32,10 +32,10 @@ function App() {
         <AdminRoute path="/admin/profile" component={AdminProfile} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route path="/admin/chats/:email" component={AdminChat} />
+        <Route exact path="/admin/chats" component={AdminChats} />
         <Route exact path="/chats" component={Chat} />
         <Route exact path="/admin/transmition" component={TransmitionLine} />
-        <Route exact path="/admin/chats/:email" component={AdminChat} />
-        <Route exact path="/admin/chats" component={AdminChats} />
         <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route component={NotFound} />
       </Switch>

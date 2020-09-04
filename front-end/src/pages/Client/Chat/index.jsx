@@ -1,42 +1,48 @@
 import React, { useState, useEffect } from "react";
-import io from 'socket.io-client';
 
 import Header from '../../../components/Header';
 import MessagesContainer from '../../../components/MessagesContainer';
 import SendField from '../../../components/SendField';
+import { getUser } from '../../../services/Request';
+import io from 'socket.io-client';
 
 import './style.css';
 
 
-const handleSubmit = (setMessages, socket) => (input) => {
+const handleSubmit = (yourUser, socket) => (input) => {
   if (input) {
-    const newMessage = { message: input, date: new Date(), sentby: 'client' };
-    setMessages((curr) => [...curr, newMessage]);
-    socket.emit('send-message', newMessage);
+    socket.emit('send-message', { message: input, yourUser });
   }
 };
 
+const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT || 'http://localhost:4555');
 const Chat = () => {
-  const [user, setUser] = useState({ id: 'id', email: 'voce@gmail.com' });
-  const [messages, setMessages] = useState([
-    { message: 'Olá também', date: new Date(), sentby: 'client' },
-    { message: 'Olá', date: new Date(), sentby: 'admin' },
-  ]);
-  const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT);
+  const [user, setUser] = useState({});
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socket.on('receive-message', (message) => {
-      setMessages((curr) => [...curr, message]);
-    });
+    const getMessages = async () => {
+      await getUser('http://localhost:3001/users/getUser')
+        .then(({ data }) => {
+          socket.emit('get-messsages', { email: data.email });
+          setUser({ ...data, sentby:'client' });
+        });
+    };
+    getMessages();
+  }, []);
+  socket.on('new message', ({ messages }) => {
+    setMessages([...messages]);
+  });
 
-    return () => { socket.destroy(); }
-  }, [socket]);
+  socket.on('receive-all-messages', ({ messages }) => {
+    setMessages(messages || []);
+  });
 
   return (
     <div className="chat_comp">
       <Header title="Chat da loja" />
-      <MessagesContainer messages={messages} user={user} />
-      <SendField handleSubmit={handleSubmit(setMessages, socket)} sentby="client" />
+      <MessagesContainer messages={messages} email={null} user={user} />
+      <SendField handleSubmit={handleSubmit(user, socket)} sentby="client" />
     </div>
   );
 };

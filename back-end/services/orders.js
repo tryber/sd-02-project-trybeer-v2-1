@@ -1,28 +1,57 @@
-const { orders, products } = require('../models');
-const { orderDetails } = require('./utils');
+const { orders } = require('../models');
 
-const list = async (id) => orders.list({
-  key: 'user_id',
-  value: id,
-});
+const list = async (id) => {
+  const ordersList = await orders.list({ key: 'user_id', value: id });
+  const temp = ordersList.map((singleOrder) => {
+    const
+      {
+        dataValues: {
+          products,
+          id: orderId,
+          total_price: totalPrice, order_date: orderDate, ...order
+        },
+      } = singleOrder;
+    const productsDetails = products.map(
+      ({ dataValues: { orders_products: ordersProducts, ...rest } }) => ({
+        ...rest,
+        quantity: ordersProducts.quantity,
+      }),
+    );
+    return {
+      ...order,
+      orderId,
+      totalPrice,
+      orderDate,
+      products: productsDetails,
+    };
+  });
+  console.log(temp)
+};
 
 const details = async (id) => {
-  const allProducts = await orders.details(id);
-  const productsId = allProducts.map(({ productId }) => productId);
-  const findOrder = await orderDetails(id);
+  const ordersDetails = await orders.details(id);
 
-  const productsDetails = await products.find(productsId);
+  const {
+    dataValues: {
+      products,
+      id: orderId,
+      total_price: totalPrice, order_date: orderDate, ...order
+    },
+  } = ordersDetails;
 
-  const productsWithQuantity = productsDetails
-    .map((product) => ({
-      ...product,
-      quantity: allProducts
-        .find(({ productId }) => productId === product.id).quantity,
-    }));
+  const productsDetails = products.map(
+    ({ dataValues: { orders_products: ordersProducts, ...rest } }) => ({
+      ...rest,
+      quantity: ordersProducts.quantity,
+    }),
+  );
 
   return {
-    ...findOrder[0],
-    products: productsWithQuantity,
+    ...order,
+    orderId,
+    totalPrice,
+    orderDate,
+    products: productsDetails,
   };
 };
 
@@ -36,7 +65,7 @@ const insert = async ({
   address,
   number,
 }) => {
-  const insertOrders = await orders.insert({
+  const order = await orders.insert({
     userId,
     orderDate,
     totalPrice,
@@ -44,7 +73,17 @@ const insert = async ({
     number,
   });
 
-  return orders.insertOrdersProducts({ orderId: insertOrders, products: productsCC });
+  const {
+    dataValues: { id: orderId },
+  } = order;
+
+  return orders.insertOrdersProducts(
+    productsCC.map(({ id, quantity }) => ({
+      product_id: id,
+      quantity,
+      order_id: orderId,
+    })),
+  );
 };
 
 module.exports = {

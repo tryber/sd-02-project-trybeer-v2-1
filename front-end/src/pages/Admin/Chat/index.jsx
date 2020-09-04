@@ -1,44 +1,58 @@
 import React, { useState, useEffect } from "react";
-import io from 'socket.io-client';
 
 import MessagesContainer from '../../../components/MessagesContainer';
-import Menu from '../Menu';
 import SendField from '../../../components/SendField';
+import { getUser } from '../../../services/Request';
+import io from 'socket.io-client';
 
 import './style.css';
+import Menu from "../Menu";
+import { Link } from "react-router-dom";
 
 
-const handleSubmit = (setMessages, socket) => (input) => {
+const handleSubmit = ({ role }, email) => async (input) => {
   if (input) {
-    const newMessage = { message: input, date: new Date(), sentby: 'admin' };
-    setMessages((curr) => [...curr, newMessage]);
-    socket.emit('send-message', newMessage);
+    const normalSocket = io('http://localhost:4555/');
+    await normalSocket.emit('send-message', { message: input, yourUser: { role, email } });
   }
 };
 
-const Chat = (props) => {
-  const { email } = props.match.params;
-  const [user, setUser] = useState({ id: 'id', email: 'voce@gmail.com' });
-  const [messages, setMessages] = useState([
-    { message: 'Olá também', date: new Date(), sentby: 'client' },
-    { message: 'Olá', date: new Date(), sentby: 'admin' },
-  ]);
-  const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT);
+const socket = io('http://localhost:4555/admin');
+const Chat = ({ location: { state: { email } } }) => {
+
+  const [user, setUser] = useState({});
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socket.on('receive-message', (message) => {
-      setMessages((curr) => [...curr, message]);
-    });
+    const getMessages = async () => {
+      await getUser('http://localhost:3001/users/getUser')
+        .then(({ data }) => {
+          socket.emit('get-messsages', { email });
+          setUser({ ...data, sentby: 'admin' });
+        });
+    };
+    getMessages();
 
-    return () => { socket.destroy(); }
-  }, [socket]);
+  }, [email]);
+
+  socket.on('new message', ({ messages }) => {
+    setMessages([...messages]);
+  });
+  socket.on('receive-all-messages', ({ messages }) => {
+    setMessages(messages);
+  });
 
   return (
-    <div className="chat_admin_page">
-      <Menu />
-      <div className="chat_admin_container">
-        <MessagesContainer messages={messages} user={user} />
-        <SendField handleSubmit={handleSubmit(setMessages, socket)} sentby="admin" />
+    <div className="chat_comp chat_adm">
+      <Menu title={email} />
+      <Link to="/admin/chats" >
+        <span class="material-icons">
+          keyboard_backspace
+        </span>
+      </Link>
+      <div className="content_chat">
+        <MessagesContainer messages={messages} email={email} user={user} />
+        <SendField handleSubmit={handleSubmit(user, email)} sentby="admin" />
       </div>
     </div>
   );

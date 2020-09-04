@@ -10,8 +10,14 @@ const path = require('path');
 
 const { error } = require('./middlewares');
 
+const socketConnection = require('./server');
+
 const {
-  products, users, orders, admin,
+  products,
+  users,
+  orders,
+  admin,
+  messages,
 } = require('./routes');
 
 const app = express();
@@ -34,8 +40,12 @@ app.use('/products', products);
 
 app.use('/users', users);
 
+app.use('/messages', messages);
+
 app.use(error);
 
 const PORT = process.env.PORT || 3001;
+
+socketConnection();
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

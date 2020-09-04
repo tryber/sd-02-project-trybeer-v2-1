@@ -1,4 +1,4 @@
-version: "2"         # required to adjust maintainability checks
+version: "2" # required to adjust maintainability checks
 exclude_patterns:
   - "**/*.test.js"
   - "src/serviceWorker.js"
@@ -8,9 +8,9 @@ exclude_patterns:
   - "**/libs/*.js"
   - "cypress/**/*"
   - "back-end/public/**/*"
-  - "back-end/infrastructure/database/migrations/*.js"
-  - "back-end/infrastructure/database/seeders/*.js"
-  - "back-end/infrastructure/database/models/index.js"
+  - "back-end/mysql/migrations/*.js"
+  - "back-end/mysql/seeders/*.js"
+  - "back-end/mysql/models/index.js"
 checks:
   argument-count:
     config:
@@ -53,7 +53,7 @@ plugins:
       fallback-colors:
         enabled: false
       box-model:
-          enabled: false
+        enabled: false
   eslint:
     enabled: true
     config:
