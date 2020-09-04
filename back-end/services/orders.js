@@ -1,5 +1,4 @@
-const { orders, products } = require("../models");
-const { orderDetails } = require("./utils");
+const { orders } = require("../models");
 
 const list = async (id) =>
   orders.list({
@@ -37,7 +36,7 @@ const insert = async ({
   address,
   number,
 }) => {
-  const insertOrders = await orders.insert({
+  const order = await orders.insert({
     userId,
     orderDate,
     totalPrice,
@@ -45,10 +44,17 @@ const insert = async ({
     number,
   });
 
-  return orders.insertOrdersProducts({
-    orderId: insertOrders,
-    products: productsCC,
-  });
+  const {
+    dataValues: { id: orderId },
+  } = order;
+
+  return orders.insertOrdersProducts(
+    productsCC.map(({ id, quantity }) => ({
+      product_id: id,
+      quantity,
+      order_id: orderId,
+    }))
+  );
 };
 
 module.exports = {

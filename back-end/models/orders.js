@@ -1,4 +1,9 @@
-const { orders, products, users } = require("../mysql/models");
+const {
+  orders,
+  products,
+  users,
+  orders_products: OrdersProducts,
+} = require("../mysql/models");
 
 const list = async ({ key, value }) =>
   orders.findAll({ where: { [key]: value } });
@@ -16,52 +21,19 @@ const insert = async ({
   number,
   status = "pendente",
 }) =>
-  connection()
-    .then((db) =>
-      db
-        .getTable("orders")
-        .insert([
-          "user_id",
-          "order_date",
-          "total_price",
-          "address",
-          "number",
-          "status",
-        ])
-        .values(
-          userId,
-          moment().format("L"),
-          totalPrice,
-          address,
-          number,
-          status
-        )
-        .execute()
-    )
-    .then((query) => query.getAutoIncrementValue());
+  orders.create({
+    user_id: userId,
+    total_price: totalPrice,
+    address,
+    number,
+    status,
+  });
 
-const insertOrdersProducts = async ({ orderId, products }) =>
-  connection()
-    .then((db) =>
-      db
-        .getTable("orders_products")
-        .insert(["order_id", "product_id", "quantity"])
-    )
-    .then((query) => {
-      products.forEach(({ id, count }) => query.values(orderId, id, count));
-      return query.execute();
-    });
+const insertOrdersProducts = async (products) =>
+  OrdersProducts.bulkCreate(products);
 
 const update = async (id) =>
-  connection().then((db) =>
-    db
-      .getTable("orders")
-      .update()
-      .set("status", "entregue")
-      .where("id = :id")
-      .bind("id", id)
-      .execute()
-  );
+  orders.update({ status: "Entregue" }, { where: { id } });
 
 module.exports = {
   list,
