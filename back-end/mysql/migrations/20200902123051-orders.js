@@ -7,10 +7,6 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       address: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -22,7 +18,6 @@ module.exports = {
       total_price: {
         type: Sequelize.DOUBLE,
         allowNull: false,
-        defaultValue: 0,
       },
       status: {
         type: Sequelize.STRING,

@@ -11,11 +11,13 @@ module.exports = {
         name: "Lana del Rey",
         email: "lana@hotmail.com",
         password: "123456",
+        role: "client",
       },
       {
         name: "Rian Soares",
         email: "rian@hotmail.com",
         password: "123456",
+        role: "client",
       },
       {
         name: "Adele",

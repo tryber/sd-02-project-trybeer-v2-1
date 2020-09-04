@@ -3,14 +3,35 @@ module.exports = {
   up: async (queryInterface, _Sequelize) => {
     await queryInterface.bulkInsert("Orders", [
       {
-        user_id: "Taylor Swift",
-        total_price: 10.00,
-          address: "Cornelia Street",
+        user_id: 1,
+        total_price: 10.57,
+        address: "Cornelia Street",
         number: 13,
-          status: ,
-        
+        status: "Pendente",
       },
-    ]);3
+      {
+        user_id: 2,
+        total_price: 4.4,
+        address: "Venice Bitch",
+        number: 10,
+        status: "Entregue",
+      },
+      {
+        user_id: 2,
+        total_price: 48.71,
+        address: "Wonderland",
+        number: 10,
+        status: "Pendente",
+      },
+      {
+        user_id: 3,
+        total_price: 9.7,
+        address: "Anapurus",
+        number: 2,
+        status: "Preparando",
+      },
+    ]);
+    3;
   },
 
   down: async (queryInterface, _Sequelize) => {
