@@ -12,13 +12,7 @@ function Product(sequelize, DataTypes) {
     }
   );
 
-  Products.associate = (models) => {
-    Products.belongsToMany(models.orders, {
-      through: "orders_products",
-      foreignKey: "order_id",
-      otherKey: "product_id",
-    });
-  };
+  Products.associate = (models) => {};
 
   return Products;
 }

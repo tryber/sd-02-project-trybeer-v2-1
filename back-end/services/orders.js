@@ -1,28 +1,29 @@
-const { orders, products } = require('../models');
-const { orderDetails } = require('./utils');
+const { orders, products } = require("../models");
+const { orderDetails } = require("./utils");
 
-const list = async (id) => orders.list({
-  key: 'user_id',
-  value: id,
-});
+const list = async (id) =>
+  orders.list({
+    key: "user_id",
+    value: id,
+  });
 
 const details = async (id) => {
-  const allProducts = await orders.details(id);
-  const productsId = allProducts.map(({ productId }) => productId);
-  const findOrder = await orderDetails(id);
+  const ordersDetails = await orders.details(id);
 
-  const productsDetails = await products.find(productsId);
+  const {
+    dataValues: { products: product, ...order },
+  } = ordersDetails;
 
-  const productsWithQuantity = productsDetails
-    .map((product) => ({
-      ...product,
-      quantity: allProducts
-        .find(({ productId }) => productId === product.id).quantity,
-    }));
+  const productsDetails = product.map(
+    ({ dataValues: { orders_products, ...rest } }) => ({
+      ...rest,
+      quantity: orders_products.quantity,
+    })
+  );
 
   return {
-    ...findOrder[0],
-    products: productsWithQuantity,
+    ...order,
+    products: productsDetails,
   };
 };
 
@@ -44,7 +45,10 @@ const insert = async ({
     number,
   });
 
-  return orders.insertOrdersProducts({ orderId: insertOrders, products: productsCC });
+  return orders.insertOrdersProducts({
+    orderId: insertOrders,
+    products: productsCC,
+  });
 };
 
 module.exports = {
