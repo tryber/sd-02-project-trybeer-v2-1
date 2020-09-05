@@ -1,5 +1,4 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
+/* eslint-disable */
 
 const fs = require('fs');
 const path = require('path');
