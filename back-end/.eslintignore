@@ -1,2 +1,2 @@
-mysql/migrations/*.js
-mysql/models/index.js
+back-end/mysql/migrations/*.js
+back-end/mysql/models/index.js
