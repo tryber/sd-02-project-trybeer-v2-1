@@ -3,20 +3,20 @@ const {
   products,
   users,
   orders_products: OrdersProducts,
-} = require("../mysql/models");
+} = require('../mysql/models');
 
 const list = async (ind) => {
   if (ind) return orders.findAll({ where: { [ind.key]: ind.value } });
   return orders.findAll({
     include: [{ model: users }],
-    attributes: { exclude: ["user_id"] },
+    attributes: { exclude: ['user_id'] },
   });
 };
 
 const details = async (id) =>
   orders.findByPk(id, {
     include: [{ model: products }, { model: users }],
-    attributes: { exclude: ["user_id"] },
+    attributes: { exclude: ['user_id'] },
   });
 
 const insert = async ({
@@ -24,7 +24,7 @@ const insert = async ({
   totalPrice,
   address,
   number,
-  status = "pendente",
+  status = 'pendente',
 }) =>
   orders.create({
     user_id: userId,
@@ -38,7 +38,7 @@ const insertOrdersProducts = async (products) =>
   OrdersProducts.bulkCreate(products);
 
 const update = async (id) =>
-  orders.update({ status: "Entregue" }, { where: { id } });
+  orders.update({ status: 'Entregue' }, { where: { id } });
 
 module.exports = {
   list,

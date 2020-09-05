@@ -1,23 +1,23 @@
-const Boom = require("@hapi/boom");
+const Boom = require('@hapi/boom');
 
-const { users } = require("../models");
+const { users } = require('../models');
 
-const { verifyToken } = require("../services/utils/jsonWebToken");
+const { verifyToken } = require('../services/utils/jsonWebToken');
 
 const auth = async (req, _res, next) => {
   try {
     const token = req.headers.authorization;
 
     if (!token) {
-      throw Boom.badRequest("Token not found");
+      throw Boom.badRequest('Token not found');
     }
 
     const decoded = verifyToken(token);
 
-    const user = await users.find({ key: "email", value: decoded.data.email });
+    const user = await users.find({ key: 'email', value: decoded.data.email });
 
     if (!user) {
-      throw Boom.unauthorized("Error by looking a user with this token");
+      throw Boom.unauthorized('Error by looking a user with this token');
     }
 
     const {

@@ -1,6 +1,6 @@
 function User(sequelize, DataTypes) {
   const Users = sequelize.define(
-    "users",
+    'users',
     {
       name: DataTypes.STRING,
       email: DataTypes.STRING,

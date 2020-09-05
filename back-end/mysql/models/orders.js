@@ -1,6 +1,6 @@
 function Order(sequelize, DataTypes) {
   const Orders = sequelize.define(
-    "orders",
+    'orders',
     {
       address: DataTypes.STRING,
       number: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ function Order(sequelize, DataTypes) {
   );
 
   Orders.associate = (models) => {
-    Orders.belongsTo(models.users, { foreignKey: "user_id" });
+    Orders.belongsTo(models.users, { foreignKey: 'user_id' });
   };
 
   return Orders;

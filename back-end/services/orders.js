@@ -1,8 +1,8 @@
-const { orders } = require("../models");
+const { orders } = require('../models');
 
 const list = async (id) =>
   orders.list({
-    key: "user_id",
+    key: 'user_id',
     value: id,
   });
 

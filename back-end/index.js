@@ -1,18 +1,18 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const cors = require("cors");
+const cors = require('cors');
 
-const express = require("express");
+const express = require('express');
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 
-const path = require("path");
+const path = require('path');
 
-const { error } = require("./middlewares");
+const { error } = require('./middlewares');
 
-const socketConnection = require("./server");
+const socketConnection = require('./server');
 
-const { products, users, orders, admin, messages } = require("./routes");
+const { products, users, orders, admin, messages } = require('./routes');
 
 const app = express();
 
@@ -24,17 +24,17 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use('/images', express.static(path.join(__dirname, '/images')));
 
-app.use("/orders", orders);
+app.use('/orders', orders);
 
-app.use("/admin", admin);
+app.use('/admin', admin);
 
-app.use("/products", products);
+app.use('/products', products);
 
-app.use("/users", users);
+app.use('/users', users);
 
-app.use("/messages", messages);
+app.use('/messages', messages);
 
 app.use(error);
 

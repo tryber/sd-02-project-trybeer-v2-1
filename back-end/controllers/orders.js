@@ -1,4 +1,4 @@
-const { orders } = require("../services");
+const { orders } = require('../services');
 
 const list = async (req, res) => {
   const ordersList = await orders.list(req.user.id);
@@ -15,13 +15,13 @@ const details = async (req, res) => {
 const insert = async (req, res) => {
   await orders.insert({ ...req.body, userId: req.user.id });
 
-  res.status(201).json({ message: "Compra concluída!" });
+  res.status(201).json({ message: 'Compra concluída!' });
 };
 
 const update = async (req, res) => {
   await orders.update(req.params.id);
 
-  res.status(201).json({ message: "Produto Entregue!" });
+  res.status(201).json({ message: 'Produto Entregue!' });
 };
 
 module.exports = {

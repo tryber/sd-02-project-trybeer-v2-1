@@ -1,7 +1,7 @@
-const { users } = require("../mysql/models");
+const { users } = require('../mysql/models');
 
 const find = async ({ key, value }) => {
-  if (key === "id") {
+  if (key === 'id') {
     return users.findByPk(value);
   }
 

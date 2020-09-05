@@ -1,8 +1,8 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient } = require('mongodb');
 
-const MONGO_DB_URL = "mongodb://127.0.0.1:27017";
+const MONGO_DB_URL = 'mongodb://127.0.0.1:27017';
 
-const DB_NAME = "Chat";
+const DB_NAME = 'Chat';
 
 const getMongoSchema = async () =>
   MongoClient.connect(MONGO_DB_URL, {

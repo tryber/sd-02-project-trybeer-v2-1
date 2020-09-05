@@ -1,4 +1,4 @@
-const { products } = require("../mysql/models");
+const { products } = require('../mysql/models');
 
 const list = async () => products.findAll();
 
