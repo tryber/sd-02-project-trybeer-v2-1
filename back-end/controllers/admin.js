@@ -1,4 +1,4 @@
-const { admin } = require("../services");
+const { admin } = require('../services');
 
 const list = async (_req, res) => {
   const ordersList = await admin.list();
