@@ -5,15 +5,14 @@ import Message from '../../../components/Message';
 import Menu from '../Menu';
 import { getOrder, updateOrder } from '../../../services/orders';
 import OrderProductsRender from '../../../components/OrderProducts';
-import dateFormat from '../../../services/DateFormat';
 
 import "./style.css";
 
 const marcar = (id, setMessage, shipping) => {
-  updateOrder(id, { shipping })
+  updateOrder(id, { status: shipping })
     .then(({ data: { message } }) => {
-      setMessage({ value: message, type: 'SUCCESS' });
-    });
+      setMessage({ value: message, type: 'SUCCESS' })
+    })
 };
 
 const ordersRender = (products, order) => {
@@ -33,15 +32,17 @@ const Order = (props) => {
   const [products, setProducts] = useState([]);
   const { id } = props.match.params;
   const { setMessage } = useContext(Context);
-  const [shipping, setShipping] = useState(['pendente', 'preparando', 'entregue']);
+  const shippingStatus = ['Pendente', 'Preparando', 'Entregue']
+  const [shipping, setShipping] = useState('');
 
   useEffect(() => {
     getOrder(id).then(({ data }) => {
       const { products, ...order } = data;
       setOrder(order);
       setProducts(products);
+      setShipping(order.status)
     });
-  }, []);
+  }, [shipping]);
   if (!order.status) return <div />
   return (
     <div className="order_admin">
@@ -49,21 +50,22 @@ const Order = (props) => {
       <Message infinity />
       <div className="container">
         <p>Pedido <span data-testid="order-number">{order.orderId} - </span>
-          <span data-testid="order-status">{order.status}</span> {dateFormat(order.orderDate)}</p>
+          <span data-testid="order-status">{order.status}</span> {order.orderDate}</p>
         {ordersRender(products, order)}
-        {order.status !== 'entregue'
-        && (
-          <button
-            type="button"
-            onClick={() => {
-              setShipping(shipping[shipping.indexOf(order) + 1]);
-              marcar(id, setMessage, shipping);
-            }}
-            data-testid="mark-as-delivered-btn"
-          >
-            Atualizar status
-          </button>
-        )}
+        {order.status !== 'Entregue'
+          && (
+            <button
+              type="button"
+              onClick={() => {
+                const newShipping = shippingStatus[shippingStatus.indexOf(shipping) + 1]
+                setShipping(newShipping);
+                marcar(id, setMessage, newShipping);
+              }}
+              data-testid="mark-as-delivered-btn"
+            >
+              Atualizar status
+            </button>
+          )}
       </div>
     </div>
   );

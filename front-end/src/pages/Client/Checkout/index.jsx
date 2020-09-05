@@ -57,8 +57,9 @@ const Checkout = () => {
   const { message, setMessage } = useContext(Context);
 
   const handleSubmit = async (e) => {
+    console.log(products)
     e.preventDefault();
-    return postSale(URL, { products, address: street, number: homeNumber, totalPrice: total, })
+    return postSale(URL, { products: products.map(({id, count}) => ({id, quantity: count})), address: street, number: homeNumber, totalPrice: total, })
       .then(({ error }) => {
         if (error) return setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' });
         setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' });
