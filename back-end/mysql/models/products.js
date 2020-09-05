@@ -12,8 +12,6 @@ function Product(sequelize, DataTypes) {
     },
   );
 
-  Products.associate = (models) => {};
-
   return Products;
 }
 

@@ -34,8 +34,7 @@ const insert = async ({
 
 const insertOrdersProducts = async (prod) => OrdersProducts.bulkCreate(prod);
 
-const update = async (id) =>
-  orders.update({ status: 'Entregue' }, { where: { id } });
+const update = async (id) => orders.update({ status: 'Entregue' }, { where: { id } });
 
 module.exports = {
   list,
