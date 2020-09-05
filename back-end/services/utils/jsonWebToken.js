@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
 const jwtConfig = {
-  expiresIn: "3h",
-  algorithm: "HS256",
+  expiresIn: '3h',
+  algorithm: 'HS256',
 };
 
 const signToken = (data) =>

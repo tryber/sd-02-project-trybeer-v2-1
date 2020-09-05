@@ -14,10 +14,10 @@ const details = async (id) => {
   } = ordersDetails;
 
   const productsDetails = product.map(
-    ({ dataValues: { orders_products, ...rest } }) => ({
+    ({ dataValues: { orders_products: ordersProducts, ...rest } }) => ({
       ...rest,
-      quantity: orders_products.quantity,
-    })
+      quantity: ordersProducts.quantity,
+    }),
   );
 
   return {
@@ -53,7 +53,7 @@ const insert = async ({
       product_id: id,
       quantity,
       order_id: orderId,
-    }))
+    })),
   );
 };
 
