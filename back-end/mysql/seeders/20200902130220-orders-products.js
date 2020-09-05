@@ -48,10 +48,10 @@ const ordersProducts = [
 
 module.exports = {
   up: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkInsert("orders_products", ordersProducts);
+    await queryInterface.bulkInsert('orders_products', ordersProducts);
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete("orders_products", null);
+    await queryInterface.bulkDelete('orders_products', null);
   },
 };

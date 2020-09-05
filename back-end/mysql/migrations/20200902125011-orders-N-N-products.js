@@ -1,25 +1,25 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("orders_products", {
+    await queryInterface.createTable('orders_products', {
       order_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: {
-          model: "orders",
-          key: "id",
+          model: 'orders',
+          key: 'id',
         },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       product_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: {
-          model: "products",
-          key: "id",
+          model: 'products',
+          key: 'id',
         },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       quantity: {
         type: Sequelize.INTEGER,
@@ -29,6 +29,6 @@ module.exports = {
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable("orders_products");
+    await queryInterface.dropTable('orders_products');
   },
 };
