@@ -1,10 +1,11 @@
 const { orders } = require('../models');
 
-const list = async (id) =>
-  orders.list({
+const list = async (id) => {
+  return orders.list({
     key: 'user_id',
     value: id,
   });
+};
 
 const details = async (id) => {
   const ordersDetails = await orders.details(id);
@@ -17,7 +18,7 @@ const details = async (id) => {
     ({ dataValues: { orders_products: ordersProducts, ...rest } }) => ({
       ...rest,
       quantity: ordersProducts.quantity,
-    }),
+    })
   );
 
   return {
@@ -53,7 +54,7 @@ const insert = async ({
       product_id: id,
       quantity,
       order_id: orderId,
-    })),
+    }))
   );
 };
 

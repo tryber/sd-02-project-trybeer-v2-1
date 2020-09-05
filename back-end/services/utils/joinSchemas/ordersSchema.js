@@ -14,7 +14,8 @@ const address = Joi.string().max(100).required().messages({
   'string.max': 'address length must be at maximum 100 characters long',
 });
 
-const number = Joi.number().integer().positive().required().messages({
+const number = Joi.number().integer().positive().required()
+  .messages({
   'number.positive': 'number must be a positive value',
   'any.required': 'number is required',
   'number.base': 'number must be a number',
