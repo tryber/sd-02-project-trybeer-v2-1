@@ -1,2 +1,2 @@
 # migrations
-/mysql/migrations
+/mysql/migrations/*.js
