@@ -13,8 +13,7 @@ const list = async (ind) => {
   });
 };
 
-const details = async (id) =>
-  orders.findByPk(id, {
+const details = async (id) => orders.findByPk(id, {
     include: [{ model: products }, { model: users }],
     attributes: { exclude: ['user_id'] },
   });
@@ -34,8 +33,7 @@ const insert = async ({
     status,
   });
 
-const insertOrdersProducts = async (products) =>
-  OrdersProducts.bulkCreate(products);
+const insertOrdersProducts = async (prod) => OrdersProducts.bulkCreate(prod);
 
 const update = async (id) =>
   orders.update({ status: 'Entregue' }, { where: { id } });
