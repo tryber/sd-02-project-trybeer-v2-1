@@ -10,7 +10,7 @@ const getMongoSchema = async () => MongoClient.connect(MONGO_DB_URL, {
 })
   .then((conn) => conn.db(DB_NAME))
   .catch(() => {
-      process.exit(1);
+    process.exit(1);
   });
 
 module.exports = {
