@@ -6,9 +6,15 @@ const {
 } = require('../mysql/models');
 
 const list = async (ind) => {
-  if (ind) return orders.findAll({ where: { [ind.key]: ind.value } });
+  if (ind) {
+    return orders.findAll({
+      where: { [ind.key]: ind.value },
+      include: [{ model: products }],
+    });
+  }
+
   return orders.findAll({
-    include: [{ model: users }],
+    include: [{ model: products }],
     attributes: { exclude: ['user_id'] },
   });
 };
@@ -34,7 +40,7 @@ const insert = async ({
 
 const insertOrdersProducts = async (prod) => OrdersProducts.bulkCreate(prod);
 
-const update = async (id) => orders.update({ status: 'Entregue' }, { where: { id } });
+const update = async (id, status) => orders.update({ status }, { where: { id } });
 
 module.exports = {
   list,

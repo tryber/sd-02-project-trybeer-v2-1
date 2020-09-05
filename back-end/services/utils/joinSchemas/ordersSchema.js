@@ -23,15 +23,15 @@ const number = Joi.number().integer().positive().required()
     'number.integer': 'number must be an integer',
   });
 
-const items = Joi.object()
-  .keys({
-    id: Joi.number().required(),
-    quantity: Joi.number().required(),
-  })
-  .required()
-  .unknown(false);
+// const items = Joi.object()
+//   .keys({
+//     id: Joi.number().required(),
+//     quantity: Joi.number().required(),
+//   })
+//   .required()
+//   .unknown(false);
 
-const products = Joi.array().items(items).required().messages({
+const products = Joi.array().required().messages({
   'number.empty': 'products is not allowed to be empty',
   'any.required': 'products is required',
   'number.base': 'products must be an array',

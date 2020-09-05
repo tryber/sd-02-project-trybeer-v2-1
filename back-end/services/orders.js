@@ -1,15 +1,26 @@
 const { orders } = require('../models');
+const { getOrdersList } = require('./utils');
 
-const list = async (id) => orders.list({ key: 'user_id', value: id });
+const list = async (id) => {
+  const ordersList = await orders.list({ key: 'user_id', value: id });
+
+  return getOrdersList(ordersList);
+};
 
 const details = async (id) => {
   const ordersDetails = await orders.details(id);
 
   const {
-    dataValues: { products: product, ...order },
+    dataValues: {
+      products,
+      id: orderId,
+      total_price: totalPrice,
+      order_date: orderDate,
+      ...order
+    },
   } = ordersDetails;
 
-  const productsDetails = product.map(
+  const productsDetails = products.map(
     ({ dataValues: { orders_products: ordersProducts, ...rest } }) => ({
       ...rest,
       quantity: ordersProducts.quantity,
@@ -18,11 +29,14 @@ const details = async (id) => {
 
   return {
     ...order,
+    orderId,
+    totalPrice,
+    orderDate,
     products: productsDetails,
   };
 };
 
-const update = async (id) => orders.update(id);
+const update = async (id, status) => orders.update(id, status);
 
 const insert = async ({
   userId,
