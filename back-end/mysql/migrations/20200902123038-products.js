@@ -1,3 +1,6 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('products', {
