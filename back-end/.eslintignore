@@ -1,0 +1,2 @@
+mysql/migrations/*.js
+mysql/models/index.js
