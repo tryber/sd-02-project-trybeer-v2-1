@@ -16,11 +16,11 @@ const address = Joi.string().max(100).required().messages({
 
 const number = Joi.number().integer().positive().required()
   .messages({
-  'number.positive': 'number must be a positive value',
-  'any.required': 'number is required',
-  'number.base': 'number must be a number',
-  'number.empty': 'number is not allowed to be empty',
-  'number.integer': 'number must be an integer',
+    'number.positive': 'number must be a positive value',
+    'any.required': 'number is required',
+    'number.base': 'number must be a number',
+    'number.empty': 'number is not allowed to be empty',
+    'number.integer': 'number must be an integer',
 });
 
 const items = Joi.object()

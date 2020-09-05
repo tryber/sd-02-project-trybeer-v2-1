@@ -9,7 +9,7 @@ function User(sequelize, DataTypes) {
     },
     {
       timestamps: false,
-    }
+    },
   );
 
   return Users;

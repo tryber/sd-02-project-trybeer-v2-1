@@ -1,11 +1,6 @@
 const { orders } = require('../models');
 
-const list = async (id) => {
-  return orders.list({
-    key: 'user_id',
-    value: id,
-  });
-};
+const list = async (id) => orders.list({ key: 'user_id', value: id });
 
 const details = async (id) => {
   const ordersDetails = await orders.details(id);

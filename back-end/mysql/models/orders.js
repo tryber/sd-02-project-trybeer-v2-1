@@ -10,7 +10,7 @@ function Order(sequelize, DataTypes) {
     },
     {
       timestamps: false,
-    }
+    },
   );
 
   Orders.associate = (models) => {

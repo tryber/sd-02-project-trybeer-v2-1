@@ -9,7 +9,7 @@ function Product(sequelize, DataTypes) {
     },
     {
       timestamps: false,
-    }
+    },
   );
 
   Products.associate = (models) => {};
