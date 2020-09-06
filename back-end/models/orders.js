@@ -19,11 +19,10 @@ const list = async (ind) => {
   });
 };
 
-const details = async (id) =>
-  orders.findByPk(id, {
-    include: [{ model: products }, { model: users }],
-    attributes: { exclude: ['user_id'] },
-  });
+const details = async (id) => orders.findByPk(id, {
+  include: [{ model: products }, { model: users }],
+  attributes: { exclude: ['user_id'] },
+});
 
 const insert = async ({
   userId,
@@ -31,19 +30,17 @@ const insert = async ({
   address,
   number,
   status = 'pendente',
-}) =>
-  orders.create({
-    user_id: userId,
-    total_price: totalPrice,
-    address,
-    number,
-    status,
-  });
+}) => orders.create({
+  user_id: userId,
+  total_price: totalPrice,
+  address,
+  number,
+  status,
+});
 
 const insertOrdersProducts = async (prod) => OrdersProducts.bulkCreate(prod);
 
-const update = async (id, status) =>
-  orders.update({ status }, { where: { id } });
+const update = async (id, status) => orders.update({ status }, { where: { id } });
 
 module.exports = {
   list,

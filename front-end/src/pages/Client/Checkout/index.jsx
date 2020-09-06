@@ -89,6 +89,23 @@ const handleSubmit = async (
   });
 };
 
+const renderProducts = (products, setProducts, total) => (
+  <div className="checkout_container_products">
+    <h3>Produtos</h3>
+    {products.map((product, index) => (
+      <Product
+        key={JSON.stringify(product)}
+        {...{ products, product, index, setProducts }}
+      />
+    ))}
+    <div className="contain_total">
+      <p className="total_text" data-testid="order-total-value">
+        Total:{formatBrl(total)}
+      </p>
+    </div>
+  </div>
+);
+
 const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [street, setStreet] = useState("");
@@ -120,20 +137,7 @@ const Checkout = () => {
       <Header title="Finalizar Pedido" />
       {message.type && <Message />}
       <div className="checkout_container">
-        <div className="checkout_container_products">
-          <h3>Produtos</h3>
-          {products.map((product, index) => (
-            <Product
-              key={JSON.stringify(product)}
-              {...{ products, product, index, setProducts }}
-            />
-          ))}
-          <div className="contain_total">
-            <p className="total_text" data-testid="order-total-value">
-              Total:{formatBrl(total)}
-            </p>
-          </div>
-        </div>
+        {renderProducts(products, setProducts, total)}
         <div className="checkout_container_form">
           {renderForm(
             handleSubmit,
