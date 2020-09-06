@@ -28,6 +28,26 @@ const ordersRender = (products, order) => {
   );
 };
 
+const renderButton = (
+  shipping,
+  id,
+  setMessage,
+  shippingStatus,
+  setShipping
+) => (
+  <button
+    type="button"
+    onClick={() => {
+      const newShipping = shippingStatus[shippingStatus.indexOf(shipping) + 1];
+      setShipping(newShipping);
+      marcar(id, setMessage, newShipping);
+    }}
+    data-testid="mark-as-delivered-btn"
+  >
+    Atualizar status
+  </button>
+);
+
 const Order = (props) => {
   const [order, setOrder] = useState({
     status: "",
@@ -63,20 +83,8 @@ const Order = (props) => {
           {order.orderDate}
         </p>
         {ordersRender(products, order)}
-        {order.status !== "Entregue" && (
-          <button
-            type="button"
-            onClick={() => {
-              const newShipping =
-                shippingStatus[shippingStatus.indexOf(shipping) + 1];
-              setShipping(newShipping);
-              marcar(id, setMessage, newShipping);
-            }}
-            data-testid="mark-as-delivered-btn"
-          >
-            Atualizar status
-          </button>
-        )}
+        {order.status !== "Entregue" &&
+          renderButton(shipping, id, setMessage, shippingStatus, setShipping)}
       </div>
     </div>
   );

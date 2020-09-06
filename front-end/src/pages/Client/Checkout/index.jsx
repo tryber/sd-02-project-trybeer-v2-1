@@ -24,9 +24,17 @@ const renderForm = (
   setStreet,
   homeNumber,
   setHomeNumber,
-  booleanButton
+  booleanButton,
+  products,
+  total,
+  setMessage
 ) => (
-  <form className="checkout_form" onSubmit={(e) => handleSubmit(e)}>
+  <form
+    className="checkout_form"
+    onSubmit={(e) =>
+      handleSubmit(e, products, street, homeNumber, total, setMessage)
+    }
+  >
     <h3>Endereço</h3>
     <label htmlFor="street">Rua:</label>
     <input
@@ -57,30 +65,36 @@ const renderForm = (
   </form>
 );
 
+const handleSubmit = async (
+  e,
+  products,
+  street,
+  homeNumber,
+  total,
+  setMessage
+) => {
+  e.preventDefault();
+  return postSale(URL, {
+    products: products.map(({ id, count }) => ({ id, quantity: count })),
+    address: street,
+    number: homeNumber,
+    totalPrice: total,
+  }).then(({ error }) => {
+    if (error)
+      return setMessage({
+        value: "Não foi possível cadastrar a venda",
+        type: "ALERT",
+      });
+    setMessage({ value: "Venda realizada com Sucesso", type: "SUCCESS" });
+  });
+};
+
 const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [street, setStreet] = useState("");
   const [homeNumber, setHomeNumber] = useState("");
   const [products, setProducts] = useState([]);
   const { message, setMessage } = useContext(Context);
-
-  const handleSubmit = async (e) => {
-    console.log(products);
-    e.preventDefault();
-    return postSale(URL, {
-      products: products.map(({ id, count }) => ({ id, quantity: count })),
-      address: street,
-      number: homeNumber,
-      totalPrice: total,
-    }).then(({ error }) => {
-      if (error)
-        return setMessage({
-          value: "Não foi possível cadastrar a venda",
-          type: "ALERT",
-        });
-      setMessage({ value: "Venda realizada com Sucesso", type: "SUCCESS" });
-    });
-  };
 
   useEffect(() => {
     setMessage({ value: "", type: "" });
@@ -127,7 +141,10 @@ const Checkout = () => {
             setStreet,
             homeNumber,
             setHomeNumber,
-            !(street && homeNumber) || total <= 0
+            !(street && homeNumber) || total <= 0,
+            products,
+            total,
+            setMessage
           )}
         </div>
       </div>
