@@ -9,7 +9,7 @@ import OrderProductsRender from "../../../components/OrderProducts";
 import "./style.css";
 
 const marcar = (id, setMessage, shipping) => {
-  updateOrder(id, { shipping }).then(({ data: { message } }) => {
+  updateOrder(id, { status: shipping }).then(({ data: { message } }) => {
     setMessage({ value: message, type: "SUCCESS" });
   });
 };
@@ -38,20 +38,20 @@ const Order = (props) => {
   const [products, setProducts] = useState([]);
   const { id } = props.match.params;
   const { setMessage } = useContext(Context);
-  const [shipping, setShipping] = useState([
-    "pendente",
-    "preparando",
-    "entregue",
-  ]);
+  const shippingStatus = ["Pendente", "Preparando", "Entregue"];
+  const [shipping, setShipping] = useState("");
 
   useEffect(() => {
     getOrder(id).then(({ data }) => {
       const { products, ...order } = data;
       setOrder(order);
       setProducts(products);
+      setShipping(order.status);
     });
-  }, []);
+  }, [shipping]);
+
   if (!order.status) return <div />;
+
   return (
     <div className="order_admin">
       <Menu />
@@ -63,12 +63,14 @@ const Order = (props) => {
           {order.orderDate}
         </p>
         {ordersRender(products, order)}
-        {order.status !== "entregue" && (
+        {order.status !== "Entregue" && (
           <button
             type="button"
             onClick={() => {
-              setShipping(shipping[shipping.indexOf(order) + 1]);
-              marcar(id, setMessage, shipping);
+              const newShipping =
+                shippingStatus[shippingStatus.indexOf(shipping) + 1];
+              setShipping(newShipping);
+              marcar(id, setMessage, newShipping);
             }}
             data-testid="mark-as-delivered-btn"
           >

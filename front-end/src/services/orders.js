@@ -28,6 +28,6 @@ const getOrder = async (id) => {
   return { data: data.order };
 };
 
-const updateOrder = async (id, object) => patchData(`http://localhost:3001/orders/${id}`, object);
+const updateOrder = async (id, reqBody) => patchData(`http://localhost:3001/orders/${id}`, reqBody);
 
 export { getOrders, getOrder, updateOrder };

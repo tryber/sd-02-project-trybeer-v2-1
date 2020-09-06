@@ -65,6 +65,7 @@ const Checkout = () => {
   const { message, setMessage } = useContext(Context);
 
   const handleSubmit = async (e) => {
+    console.log(products);
     e.preventDefault();
     return postSale(URL, {
       products: products.map(({ id, count }) => ({ id, quantity: count })),
