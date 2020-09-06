@@ -6,11 +6,13 @@ const {
 } = require('../mysql/models');
 
 const list = async (ind) => {
-  if (ind)
+  if (ind) {
     return orders.findAll({
       where: { [ind.key]: ind.value },
       include: [{ model: products }],
     });
+  }
+
   return orders.findAll({
     include: [{ model: products }],
     attributes: { exclude: ['user_id'] },

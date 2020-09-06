@@ -29,12 +29,10 @@ const validToken = async (endpoint) => axios.get(endpoint, {
 const postData = async ({ endpoint, body }) => axios.post(endpoint, body)
   .catch((error) => handleError({ error }));
 
-const postSale = async (endpoint, body) => {
-  console.log('body:', body)
-  return axios
+const postSale = async (endpoint, body) => axios
   .post(endpoint, { ...body }, { headers: headers() })
   .catch((error) => handleError({ error }));
-}
+
 const getUser = async (endpoint) => axios.get(endpoint, {
   headers: headers(),
 });
