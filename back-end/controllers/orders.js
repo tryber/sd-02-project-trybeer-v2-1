@@ -2,7 +2,7 @@ const { orders } = require('../services');
 
 const list = async (req, res) => {
   const ordersList = await orders.list(req.user.id);
-  console.log('ordersList:', ordersList)
+  console.log('ordersList:', ordersList);
 
   res.status(200).json({ orders: ordersList });
 };
@@ -21,10 +21,12 @@ const insert = async (req, res) => {
 
 const update = async (req, res) => {
   const { status } = req.body;
-  console.log('status que veio do front:', status);
+
   await orders.update(req.params.id, status);
 
-  res.status(201).json({ message: `Status da compra atualizado para ${status}` });
+  res
+    .status(201)
+    .json({ message: `Status da compra atualizado para ${status}` });
 };
 
 module.exports = {

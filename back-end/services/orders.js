@@ -2,20 +2,22 @@ const { orders } = require('../models');
 
 const list = async (id) => {
   const ordersList = await orders.list({ key: 'user_id', value: id });
-  const temp = ordersList.map((singleOrder) => {
-    const
-      {
-        dataValues: {
-          products,
-          id: orderId,
-          total_price: totalPrice, order_date: orderDate, ...order
-        },
-      } = singleOrder;
+
+  return ordersList.map((singleOrder) => {
+    const {
+      dataValues: {
+        products,
+        id: orderId,
+        total_price: totalPrice,
+        order_date: orderDate,
+        ...order
+      },
+    } = singleOrder;
     const productsDetails = products.map(
       ({ dataValues: { orders_products: ordersProducts, ...rest } }) => ({
         ...rest,
         quantity: ordersProducts.quantity,
-      }),
+      })
     );
     return {
       ...order,
@@ -25,7 +27,6 @@ const list = async (id) => {
       products: productsDetails,
     };
   });
-  console.log(temp)
 };
 
 const details = async (id) => {
@@ -35,7 +36,9 @@ const details = async (id) => {
     dataValues: {
       products,
       id: orderId,
-      total_price: totalPrice, order_date: orderDate, ...order
+      total_price: totalPrice,
+      order_date: orderDate,
+      ...order
     },
   } = ordersDetails;
 
@@ -43,7 +46,7 @@ const details = async (id) => {
     ({ dataValues: { orders_products: ordersProducts, ...rest } }) => ({
       ...rest,
       quantity: ordersProducts.quantity,
-    }),
+    })
   );
 
   return {
@@ -82,7 +85,7 @@ const insert = async ({
       product_id: id,
       quantity,
       order_id: orderId,
-    })),
+    }))
   );
 };
 

@@ -1,30 +1,38 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 
 import { Context } from "../../../context";
-import Header from '../../../components/Header';
-import { postSale } from '../../../services/Request';
-import Message from '../../../components/Message';
-import Product from './components/product';
+import Header from "../../../components/Header";
+import { postSale } from "../../../services/Request";
+import Message from "../../../components/Message";
+import Product from "./components/product";
 
-import './style.css';
+import "./style.css";
 
-const URL = 'http://localhost:3001/orders';
+const URL = "http://localhost:3001/orders";
 
-
-const getProducts = () => JSON.parse(localStorage.getItem('products')) || {};
+const getProducts = () => JSON.parse(localStorage.getItem("products")) || {};
 
 const getLocalStorage = () => Object.values(getProducts());
 
-const formatBrl = (value) => value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+const formatBrl = (value) =>
+  value.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
 
-const renderForm = (handleSubmit, street, setStreet, homeNumber, setHomeNumber, booleanButton) => (
+const renderForm = (
+  handleSubmit,
+  street,
+  setStreet,
+  homeNumber,
+  setHomeNumber,
+  booleanButton
+) => (
   <form className="checkout_form" onSubmit={(e) => handleSubmit(e)}>
     <h3>Endereço</h3>
     <label htmlFor="street">Rua:</label>
     <input
       data-testid="checkout-street-input"
-      value={street} onChange={({ target }) => setStreet(target.value)}
+      value={street}
+      onChange={({ target }) => setStreet(target.value)}
       id="street"
       type="text"
       required
@@ -51,30 +59,44 @@ const renderForm = (handleSubmit, street, setStreet, homeNumber, setHomeNumber, 
 
 const Checkout = () => {
   const [total, setTotal] = useState(0);
-  const [street, setStreet] = useState('');
-  const [homeNumber, setHomeNumber] = useState('');
+  const [street, setStreet] = useState("");
+  const [homeNumber, setHomeNumber] = useState("");
   const [products, setProducts] = useState([]);
   const { message, setMessage } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    return postSale(URL, { products, address: street, number: homeNumber, totalPrice: total, })
-      .then(({ error }) => {
-        if (error) return setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' });
-        setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' });
-      });
+    return postSale(URL, {
+      products: products.map(({ id, count }) => ({ id, quantity: count })),
+      address: street,
+      number: homeNumber,
+      totalPrice: total,
+    }).then(({ error }) => {
+      if (error)
+        return setMessage({
+          value: "Não foi possível cadastrar a venda",
+          type: "ALERT",
+        });
+      setMessage({ value: "Venda realizada com Sucesso", type: "SUCCESS" });
+    });
   };
 
   useEffect(() => {
-    setMessage({ value: '', type: '' });
-    setProducts(getLocalStorage()
-      .map((product) => ({ ...product, total: product.count * product.price })));
+    setMessage({ value: "", type: "" });
+    setProducts(
+      getLocalStorage().map((product) => ({
+        ...product,
+        total: product.count * product.price,
+      }))
+    );
   }, []);
 
-  useEffect(() => { setTotal(products.reduce((acc, curr) => acc + curr.total, 0));  }, [products]);
+  useEffect(() => {
+    setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
+  }, [products]);
 
-  if (message.type === 'SUCCESS') {
-    localStorage.removeItem('products');
+  if (message.type === "SUCCESS") {
+    localStorage.removeItem("products");
     return <Redirect to="/products" />;
   }
 
@@ -91,10 +113,21 @@ const Checkout = () => {
               {...{ products, product, index, setProducts }}
             />
           ))}
-          <div className="contain_total"><p className="total_text" data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
+          <div className="contain_total">
+            <p className="total_text" data-testid="order-total-value">
+              Total:{formatBrl(total)}
+            </p>
+          </div>
         </div>
         <div className="checkout_container_form">
-          {renderForm(handleSubmit, street, setStreet, homeNumber, setHomeNumber, !(street && homeNumber) || (total <= 0))}
+          {renderForm(
+            handleSubmit,
+            street,
+            setStreet,
+            homeNumber,
+            setHomeNumber,
+            !(street && homeNumber) || total <= 0
+          )}
         </div>
       </div>
     </React.Fragment>
