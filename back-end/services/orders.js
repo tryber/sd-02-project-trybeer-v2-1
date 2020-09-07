@@ -62,7 +62,7 @@ const insert = async ({
     productsCC.map(({ id, quantity }) => ({
       product_id: id,
       quantity,
-      order_id: orderId,  
+      order_id: orderId,
     })),
   );
 };
