@@ -26,7 +26,8 @@ const postNewMessage = async (message, yourUser) => {
   const findEmail = await getMessagesForEmail(yourUser.email) || {};
   if (!findEmail.email) {
     await insertNewUser(yourUser, message);
-  } if (findEmail.email) {
+  } 
+  if (findEmail.email) {
     await updateNewMessage(yourUser, message);
   }
   return getMessagesForEmail(yourUser.email);
