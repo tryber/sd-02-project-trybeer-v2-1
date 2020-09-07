@@ -4,6 +4,6 @@ const getMessages = async (email) => getMessagesForEmail(email);
 
 const saveMessage = async ({ message, yourUser }) => postNewMessage(message, yourUser);
 
-const getAll = async (req, res) => res.status(200).json({ messages: await getAllMessages() });
+const getAll = async (_req, res) => res.status(200).json({ messages: await getAllMessages() });
 
 module.exports = { getMessages, saveMessage, getAll };
