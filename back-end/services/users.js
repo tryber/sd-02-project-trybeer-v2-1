@@ -1,9 +1,6 @@
 const { users } = require('../models');
 
-const {
-  bcrypt: { checkString, createHash },
-  jsonWebToken: { signToken },
-} = require('./utils');
+const { bcrypt, jsonWebToken } = require('./utils');
 
 const find = async (body) => {
   const user = await users.find({
@@ -29,7 +26,7 @@ const login = async (body) => {
     dataValues: { password, ...userWithoutPassword },
   } = user[0];
 
-  const isCorrectPassword = await checkString({
+  const isCorrectPassword = await bcrypt.checkString({
     string: body.password,
     hash: password,
   });
@@ -38,7 +35,7 @@ const login = async (body) => {
     return { error: 'wrongPassowrd', token: null };
   }
 
-  const token = signToken(userWithoutPassword);
+  const token = jsonWebToken.signToken(userWithoutPassword);
 
   return { token, user: userWithoutPassword, error: null };
 };
@@ -50,7 +47,7 @@ const register = async (body) => {
     return { error: 'existUser' };
   }
 
-  const hash = await createHash(body.password);
+  const hash = await bcrypt.createHash(body.password);
 
   await users.register({ ...body, password: hash });
 

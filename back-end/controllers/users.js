@@ -33,11 +33,11 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   const { error } = await users.register(req.body);
 
-  const { token } = await users.login(req.body);
-
   if (error) {
     handleError[error]();
   }
+
+  const { token } = await users.login(req.body);
 
   res.status(201).json({ token, message: 'User created with success!' });
 };
