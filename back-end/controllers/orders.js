@@ -21,7 +21,11 @@ const insert = async (req, res) => {
 const update = async (req, res) => {
   const { status } = req.body;
 
-  await orders.update(req.params.id, status);
+  const orderUpdate = await orders.update(req.params.id, status); // armazenar isso em const
+  console.log('order update controller:', orderUpdate);
+  const { email, id } = orderUpdate;
+  console.log('email:', email, 'id:', id)
+  // socket.emit (`${email}`, data: id, status )
 
   res
     .status(201)

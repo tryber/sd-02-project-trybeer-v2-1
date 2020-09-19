@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const handleSubmit = ({ role }, email) => async (input) => {
   if (input) {
+    console.log('mensagem saiu daqui')
     const normalSocket = io('http://localhost:4555/');
     await normalSocket.emit('send-message', { message: input, yourUser: { role, email } });
   }

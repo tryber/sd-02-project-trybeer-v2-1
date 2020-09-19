@@ -36,7 +36,12 @@ const details = async (id) => {
   };
 };
 
-const update = async (id, status) => orders.update(id, status);
+const update = async (id, status) => {
+  orders.update(id, status);
+  const ordersDetails = await orders.details(id);
+  const { user: { email } } = ordersDetails;
+  return { status, id, email };
+};
 
 const insert = async ({
   userId,
